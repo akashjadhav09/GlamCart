@@ -16,7 +16,7 @@ export default function SignUpForm (){
                         <div className='user-name-detail-wrapper'>
                            <div className='first-name-wrapper'>
                             <h4>First Name</h4>
-                            <input  type="text" className="user-input input-type__username"/>
+                            <input  type="text" className="user-input input-type__username" required/>
                            </div>
 
                            <div className='last-name-wrapper'>
@@ -25,11 +25,11 @@ export default function SignUpForm (){
                            </div>                            
                         </div>
                    
-                        <h4>Email</h4>
-                        <input  type="text" className="user-input input-type__username"/>
+                        <h4>Username</h4>
+                        <input  type="text" className="user-input input-type__username" required/>
 
-                        <h4>Enter Password</h4>
-                        <input  type="password" className="user-input input-type__password"/>
+                        <h4>Password</h4>
+                        <input  type="password"  minlength="4" className="user-input input-type__password" required/>
                     </div>                    
                     <div className='term-condition-wrapper'>
                         <input type='checkbox'/> <span>I agree to the Terms & Conditions</span>

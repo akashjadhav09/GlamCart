@@ -1,6 +1,10 @@
+import {useState} from 'react';
+
 import './css/LoginCss.css'
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 
 export default function LogInForm () {
+    const [showPassword, setShowPassword] = useState(false);
 
     return(
         <div className='login-wrapper__outer'>
@@ -19,10 +23,22 @@ export default function LogInForm () {
                    </div>
                     <div className='credential-wrapper'>
                         <h4>Username</h4>
-                        <input  type="text" className="user-input input-type__username"/>
+                        <input  type="text" className="user-input input-type__username" required/>
 
                         <h4>Password</h4>
-                        <input  type="password" className="user-input input-type__password"/>
+                        <div className='password-wrapper'>
+                            <input  type={ showPassword ? "password" : "text" }  minlength="4" mixlength="10" className="user-input input-type__password" required/>
+                            {showPassword ? 
+                                (<span className='show-password-icon' onClick={() => setShowPassword(false)}>
+                                    <MdOutlineVisibility />
+                                </span>) 
+                                : 
+                                (<span className='show-password-icon' onClick={() => setShowPassword(true)}>
+                                    <MdOutlineVisibilityOff/>
+                                </span>)
+                            }
+                            
+                        </div>
                     </div>
                     <div className='forgot-password-msg'>Forgot Password?</div>
                     <button className='login-button'>Login</button>
