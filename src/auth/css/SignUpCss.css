@@ -1,0 +1,121 @@
+.signup-main-wrapper__outer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.signup-wrapper__outer {
+    display: flex    ;
+    background-color: #7c8ab9;
+    height: 90%;
+    margin: 1em;
+    align-items: center;
+    border-radius: 2.0em;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+
+.poster-wrapper {
+    width: 40%;
+    position: relative;
+}
+
+.signup-poster{
+    width: 100%;
+    border-radius: 2.0em;
+}
+
+.signup-wrapper-inner__main {
+    height: 70%;
+    width: 40%;
+}
+
+.create-account-message {
+    font-size: 2.5em;
+}
+
+.create-account-message, .instructions-wrapper {
+    text-align: center;
+    cursor: pointer;
+}
+
+.credential-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+h4{
+    margin-block-start: unset;
+    margin-inline-start: 1em;
+    margin-block-end: 0.5em;
+}
+
+.user-input {
+    width: 80%;
+    padding: 7px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-left: 1em;
+    font-size: 1.2em;
+}
+
+.user-input:focus-visible {
+    outline: none;
+}
+
+.signin-required-msg{
+    margin-block-start: 1em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signup-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #263163;;
+    color: white;
+    width:  80%;
+    margin-inline-start: 1.2em;
+}
+
+
+.detail-wrapper__outer{
+    margin-inline-start: -5em;
+}
+
+.term-condition-wrapper {
+    display: flex    ;
+    align-items: center;
+    gap: 0.1em;
+    margin-inline-start: 1.5em;
+    margin-block-end: 1em;
+}
+
+.user-name-detail-wrapper {
+    display: flex;
+}
+
+.first-name-wrapper, .last-name-wrapper{
+    width: 44%;
+}
+
+input[type="checkbox"] {
+    background-color: transparent;
+    color: currentColor;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 3px;
+    accent-color: #263163;
+    cursor: pointer;
+}
+
+

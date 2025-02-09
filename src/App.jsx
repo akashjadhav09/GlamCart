@@ -1,13 +1,16 @@
 import './App.css'
 
-import ProductList from './widgets/components/productList'
+// import ProductList from './widgets/components/productList'
+import LogInForm from './auth/Login'
+import SignUpForm from './auth/SignUp'
 
 function App() {
 
   return (
     <div id='app-container__main'>
-      <div>Vintage Market Place</div>
-     <ProductList/>
+     {/* <ProductList/> */}
+     <LogInForm/>
+     <SignUpForm/>
     </div>
   )
 }
