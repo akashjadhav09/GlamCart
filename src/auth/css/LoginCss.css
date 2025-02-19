@@ -1,0 +1,130 @@
+.login-wrapper__outer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.login-main-wrapper__outer {
+    display: flex    ;
+    background-color: #7c8ab9;
+    height: 90%;
+    margin: 1em;
+    align-items: center;
+    border-radius: 2.0em;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.poster-wrapper {
+    width: 40%;
+    position: relative;
+}
+
+.login-poster{
+    width: 100%;
+    border-radius: 2.0em;
+}
+
+.login-wrapper-inner__main {
+    /* display: flex    ;
+    height: 55%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;     */
+    height: 65%;
+    width: 40%;
+}
+
+.site-logo-wrapper {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.welcome-message-wrapper {
+    font-size: 2.5em;
+}
+
+.welcome-message-wrapper, .instructions-wrapper {
+    text-align: center;
+}
+
+.site-logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.credential-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+h4{
+    margin-block-start: unset;
+    margin-inline-start: 1em;
+    margin-block-end: 0.5em;
+}
+
+.user-input {
+    width: 80%;
+    padding: 7px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-left: 1em;
+    font-size: 1.2em;
+}
+
+.user-input:focus-visible {
+    outline: none;
+}
+
+.forgot-password-msg {
+    text-align: right;
+    margin-inline-end: 6em;
+    margin-block-end: 1em;
+    cursor: pointer;
+}
+
+.signin-required-msg{
+    margin-block-start: 1em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.login-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #263163;;
+    color: white;
+    width:  80%;
+    margin-inline-start: 1.2em;
+}
+
+
+.detail-wrapper__outer{
+    margin-inline-start: -5em;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.show-password-icon {
+    position: absolute;
+    right: 18%;
+    color: #263163;
+    top: 14%;
+    font-size: 24px;
+    cursor: pointer;
+}
+
