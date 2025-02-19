@@ -27,7 +27,7 @@ export default function LogInForm () {
 
                         <h4>Password</h4>
                         <div className='password-wrapper'>
-                            <input  type={ showPassword ? "password" : "text" }  minlength="4" mixlength="10" className="user-input input-type__password" required/>
+                            <input  type={ showPassword ? "password" : "text" }  minLength="4" maxLength="10" className="user-input input-type__password" required/>
                             {showPassword ? 
                                 (<span className='show-password-icon' onClick={() => setShowPassword(false)}>
                                     <MdOutlineVisibility />

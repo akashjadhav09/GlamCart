@@ -1,0 +1,45 @@
+.navbar-wrapper-main__outer {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #23acb1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-wrapper-main {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+  }
+
+  .glam-cart-name-wrapper{
+    margin: 0.5em;
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    cursor: pointer;
+  }
+
+  .search-bar-wrapper{
+    display: flex;
+    align-items: center;
+  }
+
+  .search-bar-wrapper__inner {
+    display: flex;
+  }
+
+  .cart-and-profile-icon-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+  }
+
+  .profile-icon-wrapper, .cart-icon-wrapper, .search-icon {
+    font-size: 24px;
+  }
+
+  
