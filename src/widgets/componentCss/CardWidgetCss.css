@@ -1,2 +1,65 @@
+.product-card-wrapper__outer{
+  background-color: #392c39;
+  height: 350px;
+  width: 17%;
+  margin-inline: 1em;
+}
 
+.card-wrapper__inner {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumbnail-wrapper {
+  position: relative;
+  height: 50%;
+  width: 85%;
+  border: 1px solid;
+  margin-block: 1em;
+  border-radius: 5%;
+}
   
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.like-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+  font-size: 24px;
+}
+
+.product-name{
+  font-size: 16px;
+  font-weight: 500
+}
+
+.price-discount-wrapper, .hot-deal-wrapper{
+  display: flex;
+  gap: 1em;
+}
+
+.hot-deal-label {
+  background: green;
+  border-radius: 10%;
+  padding: 0 0.2em;
+}
+
+.product-left-label{
+  color: rgb(241, 50, 50);
+}
+
+.delivery-status-label {
+  color: greenyellow;
+}
+
+.product-detail-wrapper {
+  margin-block-start: -0.5em;
+}

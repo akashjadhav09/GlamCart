@@ -1,4 +1,5 @@
 import React from "react";
+import {MdAddCircle } from "react-icons/md";
 
 import '../componentCss/CardWidgetCss.css';
 
@@ -13,32 +14,31 @@ export default function ProductCard({ product }) {
         <div className="card-wrapper__inner">
 
             <div className="thumbnail-wrapper">
-                <img src={product.thumbnail} alt={product.title} className="product-image" />
-                <div className="like-btn">Like</div>
+                <img src={product.thumbnail} alt={product.title} className="product-image" />       
+                <MdAddCircle className="like-btn"/>
             </div>
+           
+            <span className="product-name">{product.title}</span>
 
-            <div className="title-wrapper">
-                <h3 className="product-name">{product.title}</h3>
+            <div className="product-detail-wrapper">
+                <div className="price-discount-wrapper">
+                    <p className="product-price">Price: {priceInINR}INR</p>
+                    <p className="product-discount">{product.discountPercentage}% <span className="discoun-label">off</span></p>
+                </div>
+
+                <div className="hot-deal-wrapper">
+                    <span className="hot-deal-label">Hot Deal</span>
+                    <span className="product-left-label">Only 2 left</span>
+                </div>
+
+                <div className="rating-wrapper">
+                    <span className="product-rating">⭐⭐⭐⭐⭐ {product.rating} / 5</span>
+                </div>
+
+                <div className="delivery-status-wrapper">
+                    <span className="delivery-status-label">Free delivery</span>
+                </div>
             </div>
-
-            <div className="price-discount-wrapper">
-                <p className="product-price">{product.price}</p>
-                <p className="product-discount">{product.discountPercentage}%</p>
-            </div>
-
-            <div className="hot-deal-wrapper">
-                <p className="hot-deal-label">Hot Deal</p>
-                <p className="product-left-label">Only 2 left</p>
-            </div>
-
-            <div className="rating-wrapper">
-                <p className="product-rating">⭐⭐⭐⭐⭐ {product.rating} / 5</p>
-            </div>
-
-            <div className="delivery-status-wrapper">
-                <p className="delivery-status-label">Free delivery</p>
-            </div>
-
         </div>
     </div>
   );
