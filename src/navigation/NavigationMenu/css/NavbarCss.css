@@ -3,16 +3,21 @@
     width: 100%;
     background-color: #23acb1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 50px;
   }
 
   .navbar-wrapper-main {
-    display: flex;
+    display: flex    ;
     gap: 1em;
     width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
   }
 
   .glam-cart-name-wrapper{
-    margin: 0.5em;
+    margin: 0 1.5em;
+    padding-bottom: 10px;
   }
 
   .buttons-wrapper {
@@ -37,9 +42,25 @@
     gap: 1em;
     cursor: pointer;
   }
+  a{
+    text-decoration: auto;
+    color: white;
+  }
 
   .profile-icon-wrapper, .cart-icon-wrapper, .search-icon {
     font-size: 24px;
+  }
+
+  .nav-btn:hover {
+    color: rgb(87, 25, 116);
+  }
+
+  .cart-icon-wrapper:hover, .profile-icon-wrapper:hover {
+    color: rgb(87, 25, 116);
+  }
+
+  a:hover {
+    color: rgb(87, 25, 116);
   }
 
   
