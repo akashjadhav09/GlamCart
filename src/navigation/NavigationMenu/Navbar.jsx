@@ -34,8 +34,8 @@ export default function Navbar() {
 
        <div className="search-bar-wrapper">
         <div className="search-bar-wrapper__inner">
-            <MdOutlineSearch />
-            <input type="text" />
+            {/* <MdOutlineSearch /> */}
+            <input className="search-here" type="text" placeholder="search here"/>
         </div>
        </div>
 

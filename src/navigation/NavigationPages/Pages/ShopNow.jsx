@@ -13,11 +13,12 @@ export default function ShopNowPage(){
         <>
             <div className="home-page-wrapper__outer">
                 <div className="home-page-wrapper__inner">
-                    <h2>This is Shop Now Page</h2>
-                    <h2>Product List</h2>
-                    {productDetails.products.map((product, _index) => {               
+        
+                    {productDetails.products.map((product, index) => {               
                         return (
-                            <ProductCard key={product.id} product={product} />
+                            <div key={index} className="product-cards">
+                                <ProductCard key={product.id} product={product} />
+                            </div>
                         );
                     })}
                 </div>

@@ -1,8 +1,10 @@
 .product-card-wrapper__outer{
   background-color: #392c39;
-  height: 350px;
+  height: 360px;
   width: 17%;
   margin-inline: 1em;
+  border:1px solid #99a6b3;
+  border-radius: 10px;
 }
 
 .card-wrapper__inner {
@@ -19,7 +21,8 @@
   width: 85%;
   border: 1px solid;
   margin-block: 1em;
-  border-radius: 5%;
+  border:1px solid #99a6b3;
+  border-radius: 10px;
 }
   
 img {
@@ -31,9 +34,19 @@ img {
 .like-btn {
   position: absolute;
   top: 0;
+  left: 0;
+  padding: 0.5em;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.more-info-popup-btn{
+  position: absolute;
+  top: 0;
   right: 0;
   padding: 0.5em;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .product-name{
@@ -62,4 +75,18 @@ img {
 
 .product-detail-wrapper {
   margin-block-start: -0.5em;
+}
+
+.delivery-status-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-wrapper{
+  margin: 5px;
+}
+
+.add-to-cart-btn {
+  /* margin-block-start: 2px; */
+  cursor: pointer;
 }

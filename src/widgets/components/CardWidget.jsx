@@ -1,21 +1,32 @@
-import React from "react";
-import {MdAddCircle } from "react-icons/md";
+import  {React, useState} from "react";
+import {MdAddCircle, MdArrowOutward } from "react-icons/md";
 
 import '../componentCss/CardWidgetCss.css';
+import ProductDetailModal from "./ProductDetailPopup";
 
 export default function ProductCard({ product }) {
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
-    const conversionRate = 83; // 1 USD = 83 INR (Example rate)
-    const priceInINR = (product.price * conversionRate).toFixed(2); // Convert & format
+    const conversionRate = 83; 
+    const priceInINR = (product.price * conversionRate).toFixed(2);
 
-    console.log("product ", product)
+    const handleOpenModal = () => {
+        setIsOpenModal(true); 
+      };
+    
+      const handleCloseModal = () => {
+        setIsOpenModal(false);  
+      };
+
+
   return (
     <div className="product-card-wrapper__outer">
         <div className="card-wrapper__inner">
 
             <div className="thumbnail-wrapper">
-                <img src={product.thumbnail} alt={product.title} className="product-image" />       
                 <MdAddCircle className="like-btn"/>
+                <img src={product.thumbnail} alt={product.title} className="product-image" />       
+                <MdArrowOutward className="more-info-popup-btn" onClick={handleOpenModal}/>
             </div>
            
             <span className="product-name">{product.title}</span>
@@ -37,10 +48,15 @@ export default function ProductCard({ product }) {
 
                 <div className="delivery-status-wrapper">
                     <span className="delivery-status-label">Free delivery</span>
+                    <span className="add-to-cart-btn hot-deal-label">Add to cart</span>
                 </div>
             </div>
         </div>
+
+        {isOpenModal && <ProductDetailModal product={product} isOpen={isOpenModal} onClose={handleCloseModal} />}
+        
     </div>
+
   );
 }
 
