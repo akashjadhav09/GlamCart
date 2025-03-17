@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 import { ProductContext } from "../../../context/ProductData";
 import ProductCard from '../../../widgets/components/CardWidget'
+import './Css/ShopNowPageCSS.css';
 
 export default function ShopNowPage(){
 
@@ -12,7 +13,7 @@ export default function ShopNowPage(){
     return(
         <>
             <div className="home-page-wrapper__outer">
-                <div className="home-page-wrapper__inner">
+                <div className="home-page-wrapper__inner product-details__outer">
         
                     {productDetails.products.map((product, index) => {               
                         return (

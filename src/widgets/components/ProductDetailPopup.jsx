@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { MdClose,MdAddCircle } from "react-icons/md";
+import { MdClose,MdFavorite } from "react-icons/md";
 
 
 import "../componentCss/ProductDetailPopupCss.css"; 
@@ -42,7 +42,7 @@ export default function ProductDetailModal({product, isOpen, onClose }) {
                 </div>
                                  
                 <div className="product-image-wrapper large-image-wrapper">
-                    <MdAddCircle className="like-btn"/>
+                    <MdFavorite className="like-btn"/>
                     <img src={selectedImgPath ? selectedImgPath : product.thumbnail} alt={product.title} className="product-image" />      
                 </div>
 

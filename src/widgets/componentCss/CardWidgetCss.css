@@ -1,7 +1,6 @@
 .product-card-wrapper__outer{
   background-color: #392c39;
   height: 360px;
-  width: 17%;
   margin-inline: 1em;
   border:1px solid #99a6b3;
   border-radius: 10px;
@@ -54,9 +53,10 @@ img {
   font-weight: 500
 }
 
-.price-discount-wrapper, .hot-deal-wrapper{
+.price-discount-wrapper, .hot-deal-wrapper {
   display: flex;
   gap: 1em;
+  margin-top: -20px;
 }
 
 .hot-deal-label {
@@ -89,4 +89,12 @@ img {
 .add-to-cart-btn {
   /* margin-block-start: 2px; */
   cursor: pointer;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-white {
+  color: white;
 }

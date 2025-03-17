@@ -1,22 +1,36 @@
 import  {React, useState} from "react";
-import {MdAddCircle, MdArrowOutward } from "react-icons/md";
+import {MdFavorite, MdArrowOutward } from "react-icons/md";
 
-import '../componentCss/CardWidgetCss.css';
 import ProductDetailModal from "./ProductDetailPopup";
+import '../componentCss/CardWidgetCss.css';
 
 export default function ProductCard({ product }) {
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [favProducts, setFavProducts] = useState([]);
+    const [isFav, setIsFav] = useState(false);
+
 
     const conversionRate = 83; 
     const priceInINR = (product.price * conversionRate).toFixed(2);
 
     const handleOpenModal = () => {
-        setIsOpenModal(true); 
-      };
-    
-      const handleCloseModal = () => {
-        setIsOpenModal(false);  
-      };
+    setIsOpenModal(true); 
+    };
+
+    const handleCloseModal = () => {
+    setIsOpenModal(false);  
+    };
+
+    const handleStoreFavouriteProducts = (product) => {
+        console.log("product.id ", product.id);
+        
+        setFavProducts([...favProducts, product.id]); 
+        setIsFav((prev) => !prev); 
+       
+        favProducts.map((item) => {
+            console.log(item)
+        })
+    };
 
 
   return (
@@ -24,7 +38,7 @@ export default function ProductCard({ product }) {
         <div className="card-wrapper__inner">
 
             <div className="thumbnail-wrapper">
-                <MdAddCircle className="like-btn"/>
+                <MdFavorite className={`like-btn ${isFav ? 'color-red' : 'color-white'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
                 <img src={product.thumbnail} alt={product.title} className="product-image" />       
                 <MdArrowOutward className="more-info-popup-btn" onClick={handleOpenModal}/>
             </div>
@@ -38,13 +52,13 @@ export default function ProductCard({ product }) {
                 </div>
 
                 <div className="hot-deal-wrapper">
-                    <span className="hot-deal-label">Hot Deal</span>
+                    {/* <span className="hot-deal-label">Hot Deal</span> */}
                     <span className="product-left-label">Only 2 left</span>
                 </div>
 
-                <div className="rating-wrapper">
+                {/* <div className="rating-wrapper">
                     <span className="product-rating">⭐⭐⭐⭐⭐ {product.rating} / 5</span>
-                </div>
+                </div> */}
 
                 <div className="delivery-status-wrapper">
                     <span className="delivery-status-label">Free delivery</span>
