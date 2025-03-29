@@ -13,17 +13,31 @@
     flex-flow: wrap;
 }
 
-.footer-section {
-    text-align: center;
+
+.explore-product-label {
+    border-bottom: 4px solid orange;
+    padding-bottom: 5px;
+    font-size: 28px;
+    font-weight: 400;
 }
 
-.footer-details {
+.explore-more-btn__wrapper {
     display: flex;
-    gap: 2em;
-    margin: 10px;
+    justify-content: center;
+    margin-block: 3em;
 }
 
-.about-us-section, .group-companies-section, .help-section {
-    border-right: 1px solid;
+.explore-more-btn {
+    background-color: transparent;
     padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid lightslategray;
+    cursor: pointer;
+}
+
+.explore-more-btn:hover {
+    background-color: rgb(50, 50, 160);
+    color: white;
 }

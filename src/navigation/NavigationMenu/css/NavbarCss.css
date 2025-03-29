@@ -4,6 +4,11 @@
     background-color: #23acb1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 50px;
+    color: white;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
   .navbar-wrapper-main {
@@ -47,7 +52,7 @@
     color: white;
   }
 
-  .profile-icon-wrapper, .cart-icon-wrapper, .search-icon {
+  .profile-icon-wrapper, .cart-icon-wrapper, .search-icon, .favourite-icon-wrapper {
     font-size: 24px;
   }
 
@@ -55,7 +60,7 @@
     color: rgb(87, 25, 116);
   }
 
-  .cart-icon-wrapper:hover, .profile-icon-wrapper:hover {
+  .cart-icon-wrapper:hover, .profile-icon-wrapper:hover, .cart-icon-wrapper:hover {
     color: rgb(87, 25, 116);
   }
 
@@ -70,6 +75,22 @@
     border-radius: 5px;
     outline: none;
     border: 1px solid slategray
+  }
+
+  .favourite-icon-wrapper {
+    position: relative;
+  }
+
+  .fav-count-label {
+    position: absolute;
+    top: -5px;
+    right: -13px;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    background: lightgray;
+    border-radius: 10px;
+    text-align: center;
   }
 
   

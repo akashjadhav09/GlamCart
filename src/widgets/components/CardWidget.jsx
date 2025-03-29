@@ -1,5 +1,5 @@
-import  {React, useState} from "react";
-import {MdFavorite, MdArrowOutward } from "react-icons/md";
+import  {React, useEffect, useState} from "react";
+import {MdFavorite } from "react-icons/md";
 
 import ProductDetailModal from "./ProductDetailPopup";
 import '../componentCss/CardWidgetCss.css';
@@ -8,10 +8,16 @@ export default function ProductCard({ product }) {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [favProducts, setFavProducts] = useState([]);
     const [isFav, setIsFav] = useState(false);
+    const [isShowFavIcon, setIsShowFavIcon] = useState(false);
 
 
     const conversionRate = 83; 
     const priceInINR = (product.price * conversionRate).toFixed(2);
+
+    useEffect(() => {
+        setIsShowFavIcon(window.location.pathname === "/shopnow" ? true : false);
+    }, []);
+    
 
     const handleOpenModal = () => {
     setIsOpenModal(true); 
@@ -21,43 +27,42 @@ export default function ProductCard({ product }) {
     setIsOpenModal(false);  
     };
 
-    const handleStoreFavouriteProducts = (product) => {        
+    const handleStoreFavouriteProducts = (product) => {                
         setFavProducts([...favProducts, product.id]); 
-        setIsFav((prev) => !prev); 
-       
-        favProducts.map((item) => {
-            console.log(item)
-        })
+        setIsFav((prev) => !prev);         
     };
 
 
   return (
     <div className="product-card-wrapper__outer">
-        <div className="card-wrapper__inner">
-
-            <div className="thumbnail-wrapper">
+        <div className="product-thumbnail-wrapper">
+            {isShowFavIcon && 
                 <MdFavorite className={`like-btn ${isFav ? 'color-red' : 'color-white'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
-                <img src={product.thumbnail} alt={product.title} className="product-image" />       
-                <MdArrowOutward className="more-info-popup-btn" onClick={handleOpenModal}/>
+            }            
+            <img src={product.thumbnail} alt={product.title} className="product-image" />  
+        </div>
+        <div className="product-details-wrapper">
+            <div className="product-name">{product.title}</div>
+            <div className="product-description">{product.description}</div>
+            <div className="product-disc-wrapper">
+                <p className="product-disc">{product.discountPercentage}% <span className="">off</span></p>
+                {product.id % 2 === 0 ? (
+                    <p className="product-disc product-left-label">Only 2 left</p>
+                ):null }
             </div>
-           
-            <span className="product-name">{product.title}</span>
-
-            <div className="product-detail-wrapper">
-                <div className="price-discount-wrapper">
-                    <p className="product-price">Price: {priceInINR}INR</p>
-                    <p className="product-discount">{product.discountPercentage}% <span className="discoun-label">off</span></p>
-                </div>
-
-                <div className="hot-deal-wrapper">
-                    {/* <span className="hot-deal-label">Hot Deal</span> */}
-                    <span className="product-left-label">Only 2 left</span>
-                </div>
+            <div className="price-wrapper">
+                <p className="product-price">{priceInINR} INR</p>
             </div>
         </div>
-
+        <div className="purchase-btn-wrapper">
+            <div className="btn-wrapper">
+                <button className="add-to-cart btn">ADD TO CART</button>
+                <button className="buy-now btn">BUY NOW</button>
+            </div>
+            <div className="free-delivery-wrapper color-blue">Free Delivery</div>
+        </div>
+         
         {isOpenModal && <ProductDetailModal product={product} isOpen={isOpenModal} onClose={handleCloseModal} />}
-        
     </div>
 
   );

@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { MdOutlineSupervisedUserCircle, MdShoppingCart, MdOutlineSearch } from "react-icons/md";
+import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 
 import './css/NavbarCss.css'
 
 export default function Navbar() {
+
+  function openFavProductList(){
+    console.log("openFavProductList");    
+  }
+
   return (
 
     <nav className="navbar-wrapper-main__outer">
@@ -34,12 +39,16 @@ export default function Navbar() {
 
        <div className="search-bar-wrapper">
         <div className="search-bar-wrapper__inner">
-            {/* <MdOutlineSearch /> */}
             <input className="search-here" type="text" placeholder="search here"/>
         </div>
        </div>
 
       <div className="cart-and-profile-icon-wrapper">
+        <div className="cart-icon-wrapper favourite-icon-wrapper">
+        <MdFavorite  className="search-icon" onClick={()=>openFavProductList()}/>
+        <span className="fav-count-label">10+</span>
+        </div>
+
         <div className="cart-icon-wrapper">
         <MdShoppingCart className="search-icon" />
         </div>

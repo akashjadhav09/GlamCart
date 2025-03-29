@@ -13,9 +13,7 @@ export default function ProductDetailModal({product, isOpen, onClose }) {
   const conversionRate = 83; 
   const priceInINR = (product.price * conversionRate).toFixed(0);
 
-  console.log(product);
-
-
+  
   const getClikedImagePath = (path)=>{
     setSelectedImgPath(path);
   }

@@ -1,81 +1,96 @@
-.product-card-wrapper__outer{
-  background-color: #392c39;
-  height: 360px;
-  margin-inline: 1em;
-  border:1px solid #99a6b3;
-  border-radius: 10px;
+.product-card-wrapper__outer {
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.card-wrapper__inner {
-  height: 100%;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-}
-
-.thumbnail-wrapper {
+.product-thumbnail-wrapper {
   position: relative;
-  height: 50%;
-  width: 85%;
-  border: 1px solid;
-  margin-block: 1em;
-  border:1px solid #99a6b3;
-  border-radius: 10px;
-}
-  
-img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  border: 2px solid orange;
+  border-radius: 5px;
 }
 
 .like-btn {
   position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0.5em;
+  right: 10px;
+  top: 10px;
   font-size: 24px;
   cursor: pointer;
 }
 
-.more-info-popup-btn{
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.5em;
-  font-size: 24px;
-  cursor: pointer;
+.product-name {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 5px;
+  max-width: 305px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.product-name{
-  font-size: 16px;
-  font-weight: 500
+.product-description {
+  max-width: 305px;
+  font-size: 14px;
+  margin: 5px;
 }
 
-.price-discount-wrapper, .hot-deal-wrapper {
+.product-disc-wrapper {
   display: flex;
-  gap: 1em;
-  margin-top: -20px;
+  align-items: center;
+  gap: 0.5em;
+  margin-block-end: 5px;
 }
 
+.product-disc {
+  border: 1px solid lightslategray;
+  padding: 5px;
+  color: green;
+  font-weight: 600;
+}
 
 .product-left-label{
-  color: rgb(241, 50, 50);
+  color: red;
 }
 
-.product-detail-wrapper {
-  margin-block-start: -0.5em;
+.product-price {
+  font-size: 22px;
+  font-weight: 600;
+  margin-block-end: 5px;
 }
 
-.rating-wrapper{
-  margin: 5px;
+p{
+  margin: 0;
+}
+
+.purchase-btn-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.free-delivery-wrapper{
+  color: rgb(100, 100, 211);
+  padding-top: 2px;
+  font-weight: 600;
+}
+
+.btn {
+  padding: 0.6em;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  margin-inline-end: 0.7em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
 }
 
 .color-red {
   color: red;
 }
 
-.color-white {
-  color: white;
+.product-card-wrapper__outer img {
+  height: 300px;
+    width: 300px;
+    object-fit: cover;
 }

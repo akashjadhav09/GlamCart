@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 import { ProductContext } from "../../../context/ProductData";
 import ProductCard from '../../../widgets/components/CardWidget';
+import FooterSection from '../Pages/footer';
 
 import './Css/ShopNowPageCSS.css';
 
@@ -24,6 +25,7 @@ export default function ShopNowPage(){
                     })}
                 </div>
             </div>
+            <FooterSection />
         </>
     )
 }

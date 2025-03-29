@@ -12,6 +12,7 @@ import NewArrivalPage from './navigation/NavigationPages/Pages/NewArrival'
 import BrandsPage from './navigation/NavigationPages/Pages/ProductBrand'
 import ContactPage from './navigation/NavigationPages/Pages/Contact'
 import ShopNowPage from './navigation/NavigationPages/Pages/ShopNow'
+import ProductDetailModal from './widgets/components/ProductDetailPopup'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/shopnow" element={<ShopNowPage />} />
+          <Route path="/product-detail-modal" element={<ProductDetailModal />} />
         </Routes>
       </div>
     </Router>
