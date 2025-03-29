@@ -59,36 +59,17 @@ img {
   margin-top: -20px;
 }
 
-.hot-deal-label {
-  background: green;
-  border-radius: 10%;
-  padding: 0 0.2em;
-}
 
 .product-left-label{
   color: rgb(241, 50, 50);
-}
-
-.delivery-status-label {
-  color: greenyellow;
 }
 
 .product-detail-wrapper {
   margin-block-start: -0.5em;
 }
 
-.delivery-status-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
 .rating-wrapper{
   margin: 5px;
-}
-
-.add-to-cart-btn {
-  /* margin-block-start: 2px; */
-  cursor: pointer;
 }
 
 .color-red {

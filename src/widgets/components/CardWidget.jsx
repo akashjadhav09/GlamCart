@@ -21,9 +21,7 @@ export default function ProductCard({ product }) {
     setIsOpenModal(false);  
     };
 
-    const handleStoreFavouriteProducts = (product) => {
-        console.log("product.id ", product.id);
-        
+    const handleStoreFavouriteProducts = (product) => {        
         setFavProducts([...favProducts, product.id]); 
         setIsFav((prev) => !prev); 
        
@@ -54,15 +52,6 @@ export default function ProductCard({ product }) {
                 <div className="hot-deal-wrapper">
                     {/* <span className="hot-deal-label">Hot Deal</span> */}
                     <span className="product-left-label">Only 2 left</span>
-                </div>
-
-                {/* <div className="rating-wrapper">
-                    <span className="product-rating">⭐⭐⭐⭐⭐ {product.rating} / 5</span>
-                </div> */}
-
-                <div className="delivery-status-wrapper">
-                    <span className="delivery-status-label">Free delivery</span>
-                    <span className="add-to-cart-btn hot-deal-label">Add to cart</span>
                 </div>
             </div>
         </div>
