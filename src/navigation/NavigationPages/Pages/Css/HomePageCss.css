@@ -1,0 +1,29 @@
+.home-page-wrapper__inner .carousel {
+    margin-block-end: 2px;
+}
+
+.explore-products-text{
+    text-align: center;
+}
+
+.inital-product-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+}
+
+.footer-section {
+    text-align: center;
+}
+
+.footer-details {
+    display: flex;
+    gap: 2em;
+    margin: 10px;
+}
+
+.about-us-section, .group-companies-section, .help-section {
+    border-right: 1px solid;
+    padding: 10px;
+}

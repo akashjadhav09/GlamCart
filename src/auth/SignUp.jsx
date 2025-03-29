@@ -29,7 +29,7 @@ export default function SignUpForm (){
                         <input  type="text" className="user-input input-type__username" required/>
 
                         <h4>Password</h4>
-                        <input  type="password"  minlength="4" className="user-input input-type__password" required/>
+                        <input  type="password"  minLength="4" className="user-input input-type__password" required/>
                     </div>                    
                     <div className='term-condition-wrapper'>
                         <input type='checkbox'/> <span>I agree to the Terms & Conditions</span>

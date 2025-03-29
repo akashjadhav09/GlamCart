@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './css/LoginCss.css'
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
@@ -6,6 +7,12 @@ import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 export default function LogInForm () {
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+      // Perform login logic
+      navigate('/'); // Redirect to home after login
+    };
     return(
         <div className='login-wrapper__outer'>
             <div className='login-main-wrapper__outer'>
@@ -27,7 +34,7 @@ export default function LogInForm () {
 
                         <h4>Password</h4>
                         <div className='password-wrapper'>
-                            <input  type={ showPassword ? "password" : "text" }  minlength="4" mixlength="10" className="user-input input-type__password" required/>
+                            <input  type={ showPassword ? "password" : "text" }  minLength="4" maxLength="10" className="user-input input-type__password" required/>
                             {showPassword ? 
                                 (<span className='show-password-icon' onClick={() => setShowPassword(false)}>
                                     <MdOutlineVisibility />
