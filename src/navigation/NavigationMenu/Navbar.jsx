@@ -21,6 +21,10 @@ export default function Navbar() {
        
         <div className="buttons-wrapper">
             <div className="onsale-button-wrapper">
+                <h4 className="nav-btn"><Link to="/home">Home</Link></h4>
+            </div>
+
+            <div className="onsale-button-wrapper">
                 <h4 className="nav-btn"><Link to="/shopnow">Discover Deals</Link></h4>
             </div>
 
@@ -28,12 +32,8 @@ export default function Navbar() {
                 <h4 className="nav-btn"><Link to="/new-arrivals">New Arrival</Link></h4>
             </div>
 
-            <div className="brands-button-wrapper">
-                <h4 className="nav-btn"><Link to="/brands">Brands</Link></h4>
-            </div>
-
             <div className="contact-button-wrapper">
-                <h4 className="nav-btn"><Link to="/contact">About Us</Link></h4>
+                <h4 className="nav-btn"><Link to="/Aboutus">About Us</Link></h4>
             </div>
         </div>
 
