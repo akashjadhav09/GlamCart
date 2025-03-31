@@ -18,6 +18,7 @@ function App() {
       <div id='app-container__main'>
       <Navbar/>
       <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LogInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
