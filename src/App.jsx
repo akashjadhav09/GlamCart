@@ -10,6 +10,7 @@ import NewArrivalPage from './navigation/NavigationPages/Pages/NewArrival'
 import AboutUs from './navigation/NavigationPages/Pages/AboutUs'
 import ShopNowPage from './navigation/NavigationPages/Pages/ShopNow'
 import ProductDetailModal from './widgets/components/ProductDetailPopup'
+import BuyProductPage from './navigation/NavigationPages/Pages/BuyProductPage';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/Aboutus" element={<AboutUs />} />
           <Route path="/shopnow" element={<ShopNowPage />} />
           <Route path="/product-detail-modal" element={<ProductDetailModal />} />
+          <Route path="/buy-product" element={<BuyProductPage />} />
         </Routes>
       </div>
     </Router>

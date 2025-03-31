@@ -1,6 +1,8 @@
-import  {React, useEffect, useState} from "react";
+import  {React, useEffect, useState, useContext} from "react";
 import {MdFavorite } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
+import { ProductContext } from "../../context/ProductData";
 import ProductDetailModal from "./ProductDetailPopup";
 import '../componentCss/CardWidgetCss.css';
 
@@ -9,6 +11,8 @@ export default function ProductCard({ product }) {
     const [favProducts, setFavProducts] = useState([]);
     const [isFav, setIsFav] = useState(false);
     const [isShowFavIcon, setIsShowFavIcon] = useState(false);
+    const { setSelectedProduct } = useContext(ProductContext);
+    const navigate = useNavigate();
 
 
     const conversionRate = 83; 
@@ -31,6 +35,12 @@ export default function ProductCard({ product }) {
         setFavProducts([...favProducts, product.id]); 
         setIsFav((prev) => !prev);         
     };
+
+    const handleNavigateToBuyProductPage = (product)=>{
+        
+        setSelectedProduct(product);
+        navigate("/buy-product", { state: {product} });      
+    }
 
 
   return (
@@ -57,7 +67,7 @@ export default function ProductCard({ product }) {
         <div className="purchase-btn-wrapper">
             <div className="btn-wrapper">
                 <button className="add-to-cart btn">ADD TO CART</button>
-                <button className="buy-now btn">BUY NOW</button>
+                <button className="buy-now btn" onClick={()=> handleNavigateToBuyProductPage(product)}>BUY NOW</button>
             </div>
             <div className="free-delivery-wrapper color-blue">Free Delivery</div>
         </div>
