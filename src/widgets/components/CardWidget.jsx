@@ -3,6 +3,9 @@ import {MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import { ProductContext } from "../../context/ProductData";
+import ToastNotification from './ToastNotification';
+
+
 import '../componentCss/CardWidgetCss.css';
 
 export default function ProductCard({ product }) {
@@ -12,6 +15,8 @@ export default function ProductCard({ product }) {
     const { setSelectedProduct } = useContext(ProductContext);
     const { addToCart } = useContext(ProductContext);
     const navigate = useNavigate();
+    const [toast, setToast] = useState(null);
+    
 
 
     const conversionRate = 83; 
@@ -34,10 +39,14 @@ export default function ProductCard({ product }) {
     const handleAddProductToCart = (product) => {
         //need to show popup window which show product added or removed in/from cart.
         addToCart(product);
+
+        setToast(`${product.title} added to cart`);
+        setTimeout(() => setToast(null), 1000);
     };
 
   return (
     <div className="product-card-wrapper__outer">
+        {toast && <ToastNotification message={toast} onClose={() => setToast(null)} />}
         <div className="product-thumbnail-wrapper">
             {isShowFavIcon && 
                 <MdFavorite className={`like-btn ${isFav ? 'color-red' : 'color-white'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>

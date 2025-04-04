@@ -1,0 +1,23 @@
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #20c235;
+    color: #0c0b0b;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: #111010;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

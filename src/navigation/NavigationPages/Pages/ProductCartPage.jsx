@@ -1,19 +1,26 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 
 
 import { ProductContext } from "../../../context/ProductData";
+import ToastNotification from '../../../widgets/components/ToastNotification';
+
 import './Css/ProductCartPage.css';
 
 function CartPage (){
     const { cartProducts, removeFromCart } = useContext(ProductContext);
-    
+    const [toast, setToast] = useState(null);
+
+
     return(
         <div className="cart-page-wrapper__outer">
+             
+            {toast && <ToastNotification message={toast} onClose={() => setToast(null)} />}
+
             <div className="cart-page-wrapper__inner">
                 <div className="cart-label-wrapper">
                     <h3>Shopping cart</h3>
-                    <h5>You have 3 items in cart</h5>
+                    <h5>{cartProducts.length ? `You have ${cartProducts.length} items in cart` : 'Your cart is empty. Start shopping now!'}</h5>
                 </div>
                 {cartProducts.map((product,index)=>{
                     return(
@@ -26,7 +33,11 @@ function CartPage (){
                             <div className="product-description">{product.description}</div>
                         </div>
                         <div className="product-delete-wrapper">
-                        <AiFillDelete onClick={()=> removeFromCart(product.id)}/>
+                        <AiFillDelete onClick={() => {
+                            removeFromCart(product.id);
+                            setToast(`${product.title} removed from cart`);
+                            setTimeout(() => setToast(null), 1000);
+                            }} />
                         </div>
                     </div>
                     )
