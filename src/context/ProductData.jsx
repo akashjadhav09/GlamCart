@@ -6,10 +6,15 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [productDetails, setProductDetails] = useState(productData);
-  const [selectedProduct, setSelectedProduct] = useState(null); // Store selected product
+  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [cartProducts, setCartProducts] = useState([]);
+
+  const addToCart = (product) => {
+    setCartProducts((prevCart) => [...prevCart, product]); 
+  };
 
   return (
-    <ProductContext.Provider value={{ productDetails, selectedProduct, setSelectedProduct }}>
+    <ProductContext.Provider value={{ productDetails, selectedProduct, setSelectedProduct, cartProducts, addToCart }}>
       {children}
     </ProductContext.Provider>
   );

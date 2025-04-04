@@ -42,23 +42,24 @@ function BuyProductPage () {
             <div className="wrapper__outer">
             <div className="product-description-wrapper">
                     <div className="product-title-wrapper">{selectedProduct.title}</div>
+                   
                     <p className="product-rating">
                         {Array.from({ length: Math.round(selectedProduct.rating) }, (_, index) => (
                             <span key={index}>⭐</span>
-                        ))}
+                        ))}                         
                         <span className="review-label">Total {selectedProduct.reviews.length} reviews</span>
-                        <div className="in-stock-label">{selectedProduct.availabilityStatus}</div>
+                        <span className="in-stock-label">{selectedProduct.availabilityStatus}</span>  
                     </p>
+                   
                     <div className="product-price-wrapper">&#8377; {priceInINR}</div>
                                       
                     <div className="product-description-wrapper">{selectedProduct.description}</div>
                     
-                  
-                   
-                    <div className="brand-category-wrapper">
+                                     
+                    {/* <div className="brand-category-wrapper">
                         <span className="badge brand-label">{selectedProduct.brand}</span>
                         <span className="badge category-label">{selectedProduct.category}</span>
-                    </div>
+                    </div> */}
 
 
                     <div className="dimensions-card">
@@ -88,15 +89,15 @@ function BuyProductPage () {
                     </div>
 
                   
-                    <div className="product-tags-wrapper">
+                    {/* <div className="product-tags-wrapper">
                     {selectedProduct.tags.map((tag, index) => (
                         <span key={index} className="tag-label">{tag}</span>
                     ))}
-                </div>
+                </div> */}
 
 
                     <div className="reviews-container">
-                        <div><span className="review-heading">Consumer Evaluations</span></div>
+                        <div className="review-heading-wrapper"><span className="review-heading">Consumer Evaluations</span></div>
                         <div className="review-wrapper">
                             {selectedProduct.reviews.length > 0 ? (
                             selectedProduct.reviews.map((review, index) => (
@@ -128,19 +129,22 @@ function BuyProductPage () {
 
                 <div className="product-billing-wrapper__outer">
                     <div className="product-billing-wrapper__inner">
-                        <div className="product-count-wrapper"></div>
-                        <div className="product-delivery-status-wrapper">
-                            <div className="free-delivery-wrapper"></div>
-                            <div className="return-status-wrapper"></div>
+                        <div className="product-count-wrapper">
+                            <h5>Select Count</h5>
+                            <input type="number" />
+                        </div>
+                        <div className="btn-wrapper">
+                            <button className="add-to-cart btn">ADD TO CART</button>
+                            <button className="buy-now btn">BUY NOW</button>
                         </div>
                     </div>
 
                     <div className="card-details-wrapper__outer">
                         <div className="card-label">Card Details</div>
                         <div className="card-type-wrapper">
-                            <div className="master-card">Master</div>
-                            <div className="visa-card">Visa</div>
-                            <div className="rupay-card">Rupay</div>
+                            <div className="card master-card">Master</div>
+                            <div className="card visa-card">Visa</div>
+                            <div className="card rupay-card">Rupay</div>
                         </div>
                         <div className="card-details__inner">
                             <h5>Name on card</h5>
@@ -149,13 +153,13 @@ function BuyProductPage () {
                             <h5>Card number</h5>
                             <input type="text" />
 
-                            <div className="card-expiry-wrapper">
                                 <h5>expiration Date</h5>
                                 <input type="text" />
+                            {/* <div className="card-expiry-wrapper"> */}
 
                                 <h5>CVV</h5>
                                 <input type="text" />
-                            </div>
+                            {/* </div> */}
                         </div>
 
                         <div className="total-cost__wrapper">

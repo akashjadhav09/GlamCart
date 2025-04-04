@@ -11,6 +11,7 @@ import AboutUs from './navigation/NavigationPages/Pages/AboutUs'
 import ShopNowPage from './navigation/NavigationPages/Pages/ShopNow'
 import ProductDetailModal from './widgets/components/ProductDetailPopup'
 import BuyProductPage from './navigation/NavigationPages/Pages/BuyProductPage';
+import CartPage from './navigation/NavigationPages/Pages/ProductCartPage';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/shopnow" element={<ShopNowPage />} />
           <Route path="/product-detail-modal" element={<ProductDetailModal />} />
           <Route path="/buy-product" element={<BuyProductPage />} />
+          <Route path="/cart-page" element={<CartPage />} />
         </Routes>
       </div>
     </Router>
