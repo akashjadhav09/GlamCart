@@ -32,6 +32,7 @@ export default function ProductCard({ product }) {
     }
 
     const handleAddProductToCart = (product) => {
+        //need to show popup window which show product added or removed in/from cart.
         addToCart(product);
     };
 
