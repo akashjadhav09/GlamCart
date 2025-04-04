@@ -13,8 +13,17 @@ export const ProductProvider = ({ children }) => {
     setCartProducts((prevCart) => [...prevCart, product]); 
   };
 
+  const removeFromCart = (productId) => {
+    setCartProducts((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
   return (
-    <ProductContext.Provider value={{ productDetails, selectedProduct, setSelectedProduct, cartProducts, addToCart }}>
+    <ProductContext.Provider value={{ productDetails, 
+    selectedProduct, 
+    setSelectedProduct, 
+    cartProducts, 
+    addToCart,
+    removeFromCart }}>
       {children}
     </ProductContext.Provider>
   );
