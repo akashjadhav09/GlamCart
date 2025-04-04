@@ -1,13 +1,19 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 
 import './css/NavbarCss.css'
 
 export default function Navbar() {
+  const navigate = useNavigate();
 
   function openFavProductList(){
     console.log("openFavProductList");    
+  }
+
+  const handleOpenCart = () =>{
+    navigate('/cart-page')
   }
 
   return (
@@ -50,7 +56,7 @@ export default function Navbar() {
         </div>
 
         <div className="cart-icon-wrapper">
-        <MdShoppingCart className="search-icon" />
+        <MdShoppingCart className="search-icon" onClick={()=> handleOpenCart()}/>
         </div>
 
         <div className="profile-icon-wrapper">

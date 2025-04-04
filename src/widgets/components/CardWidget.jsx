@@ -1,14 +1,17 @@
-import  {React, useEffect, useState} from "react";
+import  {React, useEffect, useState, useContext} from "react";
 import {MdFavorite } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-import ProductDetailModal from "./ProductDetailPopup";
+import { ProductContext } from "../../context/ProductData";
 import '../componentCss/CardWidgetCss.css';
 
 export default function ProductCard({ product }) {
-    const [isOpenModal, setIsOpenModal] = useState(false);
     const [favProducts, setFavProducts] = useState([]);
     const [isFav, setIsFav] = useState(false);
     const [isShowFavIcon, setIsShowFavIcon] = useState(false);
+    const { setSelectedProduct } = useContext(ProductContext);
+    const { addToCart } = useContext(ProductContext);
+    const navigate = useNavigate();
 
 
     const conversionRate = 83; 
@@ -18,20 +21,19 @@ export default function ProductCard({ product }) {
         setIsShowFavIcon(window.location.pathname === "/shopnow" ? true : false);
     }, []);
     
-
-    const handleOpenModal = () => {
-    setIsOpenModal(true); 
-    };
-
-    const handleCloseModal = () => {
-    setIsOpenModal(false);  
-    };
-
     const handleStoreFavouriteProducts = (product) => {                
         setFavProducts([...favProducts, product.id]); 
         setIsFav((prev) => !prev);         
     };
 
+    const handleNavigateToBuyProductPage = (product)=> {        
+        setSelectedProduct(product);
+        navigate("/buy-product", { state: {product} });      
+    }
+
+    const handleAddProductToCart = (product) => {
+        addToCart(product);
+    };
 
   return (
     <div className="product-card-wrapper__outer">
@@ -56,13 +58,12 @@ export default function ProductCard({ product }) {
         </div>
         <div className="purchase-btn-wrapper">
             <div className="btn-wrapper">
-                <button className="add-to-cart btn">ADD TO CART</button>
-                <button className="buy-now btn">BUY NOW</button>
+                <button className="add-to-cart btn" onClick={()=> handleAddProductToCart(product)}>ADD TO CART</button>
+                <button className="buy-now btn" onClick={()=> handleNavigateToBuyProductPage(product)}>BUY NOW</button>
             </div>
             <div className="free-delivery-wrapper color-blue">Free Delivery</div>
         </div>
          
-        {isOpenModal && <ProductDetailModal product={product} isOpen={isOpenModal} onClose={handleCloseModal} />}
     </div>
 
   );
