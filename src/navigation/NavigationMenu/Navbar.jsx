@@ -1,15 +1,17 @@
-import React from "react";
+import {React, useContext}from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 
+import { ProductContext } from "../../context/ProductData";
 import './css/NavbarCss.css'
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { likedProducts } = useContext(ProductContext);
 
   function openFavProductList(){
-    console.log("openFavProductList");    
+    navigate('/liked-product-page')    
   }
 
   const handleOpenCart = () =>{
@@ -52,7 +54,7 @@ export default function Navbar() {
       <div className="cart-and-profile-icon-wrapper">
         <div className="cart-icon-wrapper favourite-icon-wrapper">
         <MdFavorite  className="search-icon" onClick={()=>openFavProductList()}/>
-        <span className="fav-count-label">10+</span>
+        <span className="fav-count-label">{likedProducts.length ? likedProducts.length : 0}</span>
         </div>
 
         <div className="cart-icon-wrapper">

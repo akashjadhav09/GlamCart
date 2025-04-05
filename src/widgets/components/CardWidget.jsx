@@ -4,30 +4,33 @@ import { useNavigate } from "react-router-dom";
 
 import { ProductContext } from "../../context/ProductData";
 import ToastNotification from './ToastNotification';
+import { convertPriceToRupees } from '../../helper/Helper';
 
 
 import '../componentCss/CardWidgetCss.css';
 
 export default function ProductCard({ product }) {
-    const [favProducts, setFavProducts] = useState([]);
     const [isFav, setIsFav] = useState(false);
     const [isShowFavIcon, setIsShowFavIcon] = useState(false);
     const { setSelectedProduct } = useContext(ProductContext);
     const { addToCart } = useContext(ProductContext);
     const navigate = useNavigate();
     const [toast, setToast] = useState(null);
+    const { addToFavProduct } = useContext(ProductContext);
+
+    const priceInINR = convertPriceToRupees(product.price);
     
-
-
-    const conversionRate = 83; 
-    const priceInINR = (product.price * conversionRate).toFixed(2);
 
     useEffect(() => {
         setIsShowFavIcon(window.location.pathname === "/shopnow" ? true : false);
     }, []);
     
     const handleStoreFavouriteProducts = (product) => {                
-        setFavProducts([...favProducts, product.id]); 
+        addToFavProduct(product);
+
+        setToast(`Added in favourite list`);
+        setTimeout(() => setToast(null), 1000);
+
         setIsFav((prev) => !prev);         
     };
 
@@ -43,6 +46,7 @@ export default function ProductCard({ product }) {
         setTimeout(() => setToast(null), 1000);
     };
 
+    
   return (
     <div className="product-card-wrapper__outer">
         {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={false}/>}
