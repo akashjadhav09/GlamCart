@@ -12,8 +12,6 @@ function BuyProductPage () {
     const conversionRate = 83; 
     const priceInINR = (selectedProduct.price * conversionRate).toFixed(2);
 
-    console.log("selectedProduct ", selectedProduct);
-
     const getClikedImagePath = (path)=>{
         setSelectedImgPath(path);
     }

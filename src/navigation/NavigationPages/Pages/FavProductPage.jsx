@@ -1,4 +1,6 @@
 import { React, useContext, useState } from "react";
+import { AiFillDelete } from "react-icons/ai"; 
+
 
 import { ProductContext } from "../../../context/ProductData";
 import ToastNotification from '../../../widgets/components/ToastNotification';
@@ -7,11 +9,15 @@ import { convertPriceToRupees } from '../../../helper/Helper';
 import './Css/FavProductPageCss.css';
 
 function FavProductPage (){
-    const { likedProducts } = useContext(ProductContext);
+    const { likedProducts, removeFromFavProduct } = useContext(ProductContext);
     const [toast, setToast] = useState(null);
 
-    console.log("likedProducts ", likedProducts.length);    
 
+    const handleDelete = (id) => {
+        removeFromFavProduct(id);
+        setToast(`Removed from favourite list`);
+        setTimeout(() => setToast(null), 1000);
+    }
     return(
         <div className="liked-products-wrapper">
             
@@ -19,6 +25,10 @@ function FavProductPage (){
 
             {likedProducts.map((product, index) => (
                 <div key={index} className="liked-product-card">
+                <div className="delete-icon" onClick={() => handleDelete(product.id)}>
+                    <AiFillDelete />
+                </div>
+
                 <div className="product-image">
                     <img src={product.thumbnail} alt={product.title} />
                 </div>

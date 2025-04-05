@@ -52,7 +52,7 @@ export default function ProductCard({ product }) {
         {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={false}/>}
         <div className="product-thumbnail-wrapper">
             {isShowFavIcon && 
-                <MdFavorite className={`like-btn ${isFav ? 'color-red' : 'color-white'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
+                <MdFavorite className={`like-btn ${isFav ? 'red-color' : 'white-color'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
             }            
             <img src={product.thumbnail} alt={product.title} className="product-image" />  
         </div>
