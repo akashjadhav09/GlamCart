@@ -20,7 +20,7 @@
     transform: translateY(-4px);
   }
   
-  .product-image {
+  .fav-product-image {
     width: 100%;
     height: 200px;
     background: #f9f9f9;
@@ -30,7 +30,7 @@
     overflow: hidden;
   }
   
-  .product-image img {
+  .fav-product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;

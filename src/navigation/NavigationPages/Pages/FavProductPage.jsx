@@ -19,17 +19,23 @@ function FavProductPage (){
         setTimeout(() => setToast(null), 1000);
     }
     return(
-        <div className="liked-products-wrapper">
+        <>
+            <div className="cart-label-wrapper">
+                <h3>Your wish list</h3>
+                <h5>{likedProducts.length ? `You have ${likedProducts.length} items in wishlist` : 'Your wishlist is empty. Explore products now!'}</h5>
+            </div>
+
+            <div className="liked-products-wrapper">
             
             {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={true}/>}
-
+            
             {likedProducts.map((product, index) => (
                 <div key={index} className="liked-product-card">
                 <div className="delete-icon" onClick={() => handleDelete(product.id)}>
                     <AiFillDelete />
                 </div>
 
-                <div className="product-image">
+                <div className="fav-product-image">
                     <img src={product.thumbnail} alt={product.title} />
                 </div>
                 <div className="product-info">
@@ -46,6 +52,9 @@ function FavProductPage (){
                 </div>
             ))}
             </div>
+
+        </>
+        
     )
 }
 

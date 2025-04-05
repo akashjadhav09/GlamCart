@@ -8,7 +8,7 @@ import './css/NavbarCss.css'
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { likedProducts } = useContext(ProductContext);
+  const { likedProducts, cartProducts } = useContext(ProductContext);
 
   function openFavProductList(){
     navigate('/liked-product-page')    
@@ -52,13 +52,23 @@ export default function Navbar() {
        </div>
 
       <div className="cart-and-profile-icon-wrapper">
-        <div className="cart-icon-wrapper favourite-icon-wrapper">
-        <MdFavorite  className="search-icon" onClick={()=>openFavProductList()}/>
-        <span className="fav-count-label">{likedProducts.length ? likedProducts.length : 0}</span>
+        <div className="cart-icon-wrapper favourite-icon-wrapper" onClick={() => openFavProductList()}>
+          <MdFavorite className="search-icon" />
+          {likedProducts.length ? (
+            <span className="fav-count-label">
+              {likedProducts.length > 0 ? likedProducts.length : 0}
+            </span>
+          ) :null}         
         </div>
 
-        <div className="cart-icon-wrapper">
-        <MdShoppingCart className="search-icon" onClick={()=> handleOpenCart()}/>
+        <div className="cart-icon-wrapper" onClick={()=> handleOpenCart()}>
+          <MdShoppingCart className="search-icon -icon-wrapper"/>
+          {cartProducts.length ? (
+            <span className="cart-count-label">
+              {cartProducts.length}
+            </span>
+          ) : null}
+          
         </div>
 
         <div className="profile-icon-wrapper">
