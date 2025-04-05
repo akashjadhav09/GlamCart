@@ -19,7 +19,7 @@ function CartPage (){
 
             <div className="cart-page-wrapper__inner">
                 <div className="cart-label-wrapper">
-                    <h3>Shopping cart</h3>
+                    <h3>Shopping Cart</h3>
                     <h5>{cartProducts.length ? `You have ${cartProducts.length} items in cart` : 'Your cart is empty. Start shopping now!'}</h5>
                 </div>
                 {cartProducts.map((product,index)=>{
@@ -37,7 +37,7 @@ function CartPage (){
                             removeFromCart(product.id);
                             setToast(`Removed from cart`);
                             setTimeout(() => setToast(null), 1000);
-                            }} />
+                            }} />                           
                         </div>
                     </div>
                     )

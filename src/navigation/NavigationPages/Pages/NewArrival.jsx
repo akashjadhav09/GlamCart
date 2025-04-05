@@ -1,6 +1,7 @@
 import React from "react";
 
 import ServiceCard from '../../../widgets/components/ServiceCard';
+import FooterSection from "./footer";
 import './Css/NewArrivalPageCss.css';
 
 export default function NewArrivalPage() {
@@ -11,9 +12,8 @@ export default function NewArrivalPage() {
                     <span className="new-arrival-label">New Arrivals</span>
                 </div>
 
-                {/* Grid Layout */}
                 <div className="new-arrival-grid">  
-                    <div className="new-arrival-item-1 item">
+                    <div className="new-arrival-item item item-1">
                         <img 
                             src="https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/thumbnail.png"
                             alt="new-arrival-product" 
@@ -24,7 +24,7 @@ export default function NewArrivalPage() {
                             <div className="description">Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine.consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences</div>
                         </div>
                     </div>          
-                    <div className="new-arrival-item-2 item">
+                    <div className="new-arrival-item item item-2">
                         <img 
                             src="../../../../public/assets/images/cos-1.jpg"
                             alt="new-arrival-product" 
@@ -35,7 +35,7 @@ export default function NewArrivalPage() {
                             <div className="description">The Red Lipstick is a classic and bold choice for adding a pop of color to your lips.</div>
                         </div>
                     </div>
-                    <div className="new-arrival-item-3 item">
+                    <div className="new-arrival-item item item-3">
                         <img 
                             src="https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png"
                             alt="new-arrival-product" 
@@ -46,7 +46,7 @@ export default function NewArrivalPage() {
                             <div className="description">The Powder Canister is a finely milled setting powder designed to set makeup and control shine.</div>
                         </div>
                     </div>
-                    <div className="new-arrival-item-4 item">
+                    <div className="new-arrival-item item item-4">
                         <img 
                             src="https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/thumbnail.png"
                             alt="new-arrival-product" 
@@ -59,6 +59,7 @@ export default function NewArrivalPage() {
                     </div>                    
                 </div>
                 <ServiceCard/>
+                <FooterSection/>
             </div>
         </div>
     );

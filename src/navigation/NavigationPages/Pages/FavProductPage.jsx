@@ -21,7 +21,7 @@ function FavProductPage (){
     return(
         <>
             <div className="cart-label-wrapper">
-                <h3>Your wish list</h3>
+                <h3>Your Wish List</h3>
                 <h5>{likedProducts.length ? `You have ${likedProducts.length} items in wishlist` : 'Your wishlist is empty. Explore products now!'}</h5>
             </div>
 
