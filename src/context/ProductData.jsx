@@ -10,7 +10,10 @@ export const ProductProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
 
   const addToCart = (product) => {
-    setCartProducts((prevCart) => [...prevCart, product]); 
+    const alreadyInCart = cartProducts.some((p) => p.id === product.id);
+    if (!alreadyInCart) {
+      setCartProducts((prev) => [...prev, product]);
+    }
   };
 
   const removeFromCart = (productId) => {

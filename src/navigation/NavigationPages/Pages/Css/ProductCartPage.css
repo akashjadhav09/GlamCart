@@ -68,14 +68,17 @@
     text-align: center;
   }
 
-  .cart-label-wrapper h3 {
-    border-bottom: 2px solid orangered;
+  .cart-label-wrapper h3 {  
     padding: 5px;
     display: inline-block;
     margin-block: 10px;
+    border-bottom: 4px solid orange;
+    font-size: 28px;
+    font-weight: 400;
   }
 
   .cart-label-wrapper h5 {
     margin: 0;
+    font-size: 16px;
   }
   

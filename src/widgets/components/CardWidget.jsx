@@ -37,16 +37,15 @@ export default function ProductCard({ product }) {
     }
 
     const handleAddProductToCart = (product) => {
-        //need to show popup window which show product added or removed in/from cart.
         addToCart(product);
 
-        setToast(`${product.title} added to cart`);
+        setToast(`Added to cart`);
         setTimeout(() => setToast(null), 1000);
     };
 
   return (
     <div className="product-card-wrapper__outer">
-        {toast && <ToastNotification message={toast} onClose={() => setToast(null)} />}
+        {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={false}/>}
         <div className="product-thumbnail-wrapper">
             {isShowFavIcon && 
                 <MdFavorite className={`like-btn ${isFav ? 'color-red' : 'color-white'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>

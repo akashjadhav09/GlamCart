@@ -15,7 +15,7 @@ function CartPage (){
     return(
         <div className="cart-page-wrapper__outer">
              
-            {toast && <ToastNotification message={toast} onClose={() => setToast(null)} />}
+            {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={true}/>}
 
             <div className="cart-page-wrapper__inner">
                 <div className="cart-label-wrapper">
@@ -35,7 +35,7 @@ function CartPage (){
                         <div className="product-delete-wrapper">
                         <AiFillDelete onClick={() => {
                             removeFromCart(product.id);
-                            setToast(`${product.title} removed from cart`);
+                            setToast(`Removed from cart`);
                             setTimeout(() => setToast(null), 1000);
                             }} />
                         </div>
