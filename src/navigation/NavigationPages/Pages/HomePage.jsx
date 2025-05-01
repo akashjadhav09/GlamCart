@@ -31,7 +31,6 @@ export default function HomePage() {
                 <div className="explore-more-btn__wrapper">
                     <button className="explore-more-btn" onClick={()=> handleExploreMoreProducts()}>Explore More</button>
                 </div>
-
                 <FooterSection/>
             </div>
         </div>

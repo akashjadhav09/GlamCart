@@ -1,9 +1,9 @@
-
 .new-arrival-wrapper {
     text-align: center;
+    margin-block: 10px;
 }
 
-.new-arrival-label {
+.new-arrival-wrapper .new-arrival-label {
     border-bottom: 4px solid orange;
     padding-bottom: 5px;
     font-size: 28px;
@@ -12,56 +12,46 @@
 
 .new-arrival-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: auto;
-    gap: 0.5em;
-    margin-top: 1em;
-    padding: 1em;
+    grid-template-areas:
+        "item1 item2"
+        "item1 item3"
+        "item1 item4";
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
 }
+
+.item-1 { grid-area: item1; }
+.item-2 { grid-area: item2; }
+.item-3 { grid-area: item3; }
+.item-4 { grid-area: item4; }
 
 .new-arrival-item {
     background: #fff;
+    border: 1px solid lightslategray;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
     padding: 15px;
-    text-align: center;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
 }
-
 
 .product-image {
     width: 100%;
-    height: auto;
+    height: 180px;
+    object-fit: cover;
     border-radius: 8px;
+    margin-bottom: 1rem;
 }
-
-
-.new-arrival-item-1 {
-    grid-column: span 2;
-    grid-row: span 4;
-    align-content: center;
-}
-
-.new-arrival-item-2 {
-    grid-column: span 2;
-}
-
-.new-arrival-item-3 {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
 
 .new-arrival-detail-wrapper .text {
-    font-size: 24px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .description {
-    font-size: 16px;
-    margin-top: 5px;
-}
-
-.item {
-    border: 1px solid lightslategray;
-    border-radius: 5px;
-    padding: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
 }

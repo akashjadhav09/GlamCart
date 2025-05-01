@@ -1,15 +1,17 @@
-import React from "react";
+import {React, useContext}from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 
+import { ProductContext } from "../../context/ProductData";
 import './css/NavbarCss.css'
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { likedProducts, cartProducts } = useContext(ProductContext);
 
   function openFavProductList(){
-    console.log("openFavProductList");    
+    navigate('/liked-product-page')    
   }
 
   const handleOpenCart = () =>{
@@ -43,20 +45,30 @@ export default function Navbar() {
             </div>
         </div>
 
-       <div className="search-bar-wrapper">
+       {/* <div className="search-bar-wrapper">
         <div className="search-bar-wrapper__inner">
             <input className="search-here" type="text" placeholder="search here"/>
         </div>
-       </div>
+       </div> */}
 
       <div className="cart-and-profile-icon-wrapper">
-        <div className="cart-icon-wrapper favourite-icon-wrapper">
-        <MdFavorite  className="search-icon" onClick={()=>openFavProductList()}/>
-        <span className="fav-count-label">10+</span>
+        <div className="cart-icon-wrapper favourite-icon-wrapper" onClick={() => openFavProductList()}>
+          <MdFavorite className="search-icon" />
+          {likedProducts.length ? (
+            <span className="fav-count-label">
+              {likedProducts.length > 0 ? likedProducts.length : 0}
+            </span>
+          ) :null}         
         </div>
 
-        <div className="cart-icon-wrapper">
-        <MdShoppingCart className="search-icon" onClick={()=> handleOpenCart()}/>
+        <div className="cart-icon-wrapper" onClick={()=> handleOpenCart()}>
+          <MdShoppingCart className="search-icon -icon-wrapper"/>
+          {cartProducts.length ? (
+            <span className="cart-count-label">
+              {cartProducts.length}
+            </span>
+          ) : null}
+          
         </div>
 
         <div className="profile-icon-wrapper">
