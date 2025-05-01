@@ -9,7 +9,7 @@ import { convertPriceToRupees } from '../../helper/Helper';
 
 import '../componentCss/CardWidgetCss.css';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, alreadyLikedProductId }) {
     const [isFav, setIsFav] = useState(false);
     const [isShowFavIcon, setIsShowFavIcon] = useState(false);
     const { setSelectedProduct } = useContext(ProductContext);
@@ -17,21 +17,34 @@ export default function ProductCard({ product }) {
     const navigate = useNavigate();
     const [toast, setToast] = useState(null);
     const { addToFavProduct } = useContext(ProductContext);
+    const { likedProducts, removeFromFavProduct, cartProducts } = useContext(ProductContext);
+    const [isProductLiked, setisProductLiked] = useState(false);
+    const [likedProductId, setlikedProductId] = useState([]);
+    const [isAlreadyInCart, setisAlreadyInCart] = useState(false);
 
     const priceInINR = convertPriceToRupees(product.price);
     
-
     useEffect(() => {
         setIsShowFavIcon(window.location.pathname === "/shopnow" ? true : false);
-    }, []);
+        const likedIds = likedProducts.map(item => item.id); 
+        setlikedProductId(likedIds);
+    }, [likedProducts]);
     
-    const handleStoreFavouriteProducts = (product) => {                
-        addToFavProduct(product);
-
-        setToast(`Added in favourite list`);
+    const handleStoreFavouriteProducts = (product) => {   
+        const alreadyInFavProduct = likedProducts.some((p) => p.id === product.id);
+        
+        if(!alreadyInFavProduct){
+            addToFavProduct(product);
+            setisProductLiked(false);
+            setToast('Added in favourite list');            
+        }else{
+            removeFromFavProduct(product.id);
+            setisProductLiked(true);
+            setToast('Removed from favourite list');
+        }
+        
+        setIsFav((prev) => !prev);  
         setTimeout(() => setToast(null), 1000);
-
-        setIsFav((prev) => !prev);         
     };
 
     const handleNavigateToBuyProductPage = (product)=> {        
@@ -40,19 +53,28 @@ export default function ProductCard({ product }) {
     }
 
     const handleAddProductToCart = (product) => {
-        addToCart(product);
+       
+        const productID = cartProducts.map((item)=>{
+            return item.id
+        })
+        if(!productID.includes(product.id)) {
+            addToCart(product);
+            setToast(`Added to cart`);
+        }else{
+            setisAlreadyInCart(true);
+            setToast(`It's already in your cart`);
+        }
 
-        setToast(`Added to cart`);
         setTimeout(() => setToast(null), 1000);
     };
 
     
   return (
     <div className="product-card-wrapper__outer">
-        {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={false}/>}
+        {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={isProductLiked} isAlreadyInCart={isAlreadyInCart}/>}
         <div className="product-thumbnail-wrapper">
             {isShowFavIcon && 
-                <MdFavorite className={`like-btn ${isFav ? 'red-color' : 'white-color'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
+                <MdFavorite className={`like-btn ${likedProductId.includes(product.id) || alreadyLikedProductId.includes(product.id) ? 'red-color' : 'white-color'}`} onClick={()=>handleStoreFavouriteProducts(product)}/>
             }            
             <img src={product.thumbnail} alt={product.title} className="product-image" />  
         </div>

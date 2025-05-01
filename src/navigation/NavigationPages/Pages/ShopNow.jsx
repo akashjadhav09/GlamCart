@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 
 import { ProductContext } from "../../../context/ProductData";
@@ -10,7 +10,13 @@ import './Css/ShopNowPageCSS.css';
 
 export default function ShopNowPage(){
 
-    const {productDetails} = useContext(ProductContext);
+    const {productDetails, likedProducts} = useContext(ProductContext);
+    const [alreadyLikedProductId, setAlreadyLikedProductId] = useState([]);
+
+    useEffect(() => {
+        const likedIds = likedProducts.map(item => item.id); 
+        setAlreadyLikedProductId(likedIds); 
+    }, []);
 
     return(
         <>
@@ -19,7 +25,7 @@ export default function ShopNowPage(){
                     {productDetails.products.map((product, index) => {               
                         return (
                             <div key={index} className="product-cards">
-                                <ProductCard key={product.id} product={product} />
+                                <ProductCard key={product.id} product={product} alreadyLikedProductId={alreadyLikedProductId}/>
                             </div>
                         );
                     })}

@@ -15,7 +15,7 @@ function FavProductPage (){
 
     const handleDelete = (id) => {
         removeFromFavProduct(id);
-        setToast(`Removed from favourite list`);
+        setToast('Removed from favourite list');
         setTimeout(() => setToast(null), 1000);
     }
     return(
