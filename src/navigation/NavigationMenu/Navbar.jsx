@@ -40,7 +40,7 @@ export default function Navbar() {
                 <h4 className="nav-btn"><Link to="/new-arrivals">New Arrival</Link></h4>
             </div>
 
-            <div className="contact-button-wrapper">
+            <div className="contact-button-wrapper ">
                 <h4 className="nav-btn"><Link to="/Aboutus">About Us</Link></h4>
             </div>
         </div>
