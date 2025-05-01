@@ -110,4 +110,14 @@
   .delete-icon:hover {
     transform: scale(1.1);
   }
+
+  .cart-label-wrapper .explore-products-now-label {
+    margin-bottom: 1em;
+  }
+
+  .fav-product-explore-more-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   

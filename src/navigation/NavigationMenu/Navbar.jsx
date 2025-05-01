@@ -45,11 +45,11 @@ export default function Navbar() {
             </div>
         </div>
 
-       <div className="search-bar-wrapper">
+       {/* <div className="search-bar-wrapper">
         <div className="search-bar-wrapper__inner">
             <input className="search-here" type="text" placeholder="search here"/>
         </div>
-       </div>
+       </div> */}
 
       <div className="cart-and-profile-icon-wrapper">
         <div className="cart-icon-wrapper favourite-icon-wrapper" onClick={() => openFavProductList()}>

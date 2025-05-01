@@ -70,7 +70,7 @@ export default function AboutUs(){
 
                             <ProfileCard
                                 image="../../../../public/assets/images/prof-avtar-2.png"
-                                name="David Lee"
+                                name="Yash Bagal"
                                 designation="Operations Manager"
                                 socialLinks={{
                                 linkedin: "https://linkedin.com/in/johndoe",

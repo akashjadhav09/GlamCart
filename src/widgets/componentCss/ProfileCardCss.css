@@ -50,10 +50,14 @@
 }
 
 .social-icons a:hover {
-    color: #0077b5; /* Default LinkedIn color */
+    color: #0077b5; 
 }
 
-/* Team Section Layout */
+a:hover{
+    border-bottom: unset;
+    padding-bottom: unset;
+}
+
 .team-container {
     display: flex;
     gap: 20px;

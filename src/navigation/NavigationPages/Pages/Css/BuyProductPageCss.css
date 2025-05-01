@@ -57,6 +57,8 @@
 
 .product-rating .review-label {
   color: #2171c1;
+  cursor: pointer;
+  margin-inline-end: 0.5em;
 }
 
 .product-price-wrapper {

@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useRef  } from "react";
 
 import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
@@ -9,10 +9,15 @@ import './Css/BuyProductPageCss.css';
 function BuyProductPage () {
     const { selectedProduct } = useContext(ProductContext);
     const [selectedImgPath, setSelectedImgPath] = useState(null);
+    const productReviewDivRef = useRef(null);
 
     const getClikedImagePath = (path)=>{
         setSelectedImgPath(path);
     }
+
+    const handleScrollToProductReviewDiv = () => {
+        productReviewDivRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
     
     return(
         <div className="buy-product-wrapper__outer">
@@ -45,7 +50,7 @@ function BuyProductPage () {
                             {Array.from({ length: Math.round(selectedProduct.rating) }, (_, index) => (
                                 <span key={index}>⭐</span>
                             ))}                         
-                            <span className="review-label">Total {selectedProduct.reviews.length} reviews</span>
+                            <span className="review-label" onClick={handleScrollToProductReviewDiv}>Total {selectedProduct.reviews.length} reviews</span>
                             <span className="in-stock-label">{selectedProduct.availabilityStatus}</span>  
                         </p>
                    
@@ -72,7 +77,7 @@ function BuyProductPage () {
                                 🚚 <strong>Shipped Within:</strong> {selectedProduct.shippingInformation}
                             </div>
                             
-                            <div className="return-policy">
+                            <div className="return-policy" ref={productReviewDivRef}>
                                 🔄 <strong>Return Policy:</strong> {selectedProduct.returnPolicy}
                             </div>
                         </div>
