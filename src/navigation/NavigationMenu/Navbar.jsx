@@ -1,14 +1,17 @@
-import {React, useContext}from "react";
+import {React, useContext, useState}from "react";
 import { Link, useNavigate } from 'react-router-dom';
-
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
+import { GiHamburgerMenu } from "react-icons/gi";
 
+
+import Sidebar from '../../widgets/components/SideBar';
 import { ProductContext } from "../../context/ProductData";
 import './css/NavbarCss.css'
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { likedProducts, cartProducts } = useContext(ProductContext);
+  const [isShowSidebar, setIsShowSidebar] = useState(false);
 
   function openFavProductList(){
     navigate('/liked-product-page')    
@@ -18,16 +21,26 @@ export default function Navbar() {
     navigate('/cart-page')
   }
 
-  return (
+  const handleShowSidebar = ()=>{
+    setIsShowSidebar(prev => !prev);
+  }
 
+  return (
+    <>
     <nav className="navbar-wrapper-main__outer">
       <div className="navbar-wrapper-main">
         
-       <div className="glam-cart-name-wrapper">
-        <h2>Glam Cart</h2>
-       </div>
+        <div className="logo-hamburger-wrapper__outer flex items-center justify-center gap-4">
+          <div className="hamburger-wrapper mx-8 cursor-pointer" onClick={()=> handleShowSidebar()}>
+            <GiHamburgerMenu className="block md:hidden"/>
+          </div>
+
+        <div className="glam-cart-name-wrapper">
+          <h2>Glam Cart</h2>
+        </div>
+        </div>
        
-        <div className="buttons-wrapper">
+          <div className="buttons-wrapper hidden md:flex">
             <div className="onsale-button-wrapper">
                 <h4 className="nav-btn"><Link to="/home">Home</Link></h4>
             </div>
@@ -43,7 +56,7 @@ export default function Navbar() {
             <div className="contact-button-wrapper ">
                 <h4 className="nav-btn"><Link to="/Aboutus">About Us</Link></h4>
             </div>
-        </div>
+          </div>
 
        {/* <div className="search-bar-wrapper">
         <div className="search-bar-wrapper__inner">
@@ -78,5 +91,10 @@ export default function Navbar() {
 
       </div>
     </nav>
+
+    <div className={`md:hidden ${isShowSidebar ?'block' : 'hidden'}`}>
+      <Sidebar isOpen={isShowSidebar} onClose={() => setIsShowSidebar(false)}/>
+    </div>
+    </>
   );
 }

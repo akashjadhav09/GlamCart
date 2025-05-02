@@ -7,3 +7,12 @@
     padding: 10px;
     margin-inline: 0.5em;
 }
+
+a{
+    display: flex    ;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    text-decoration: unset !important; 
+    color: unset !important; 
+}

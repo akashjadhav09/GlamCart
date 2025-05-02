@@ -13,21 +13,14 @@ import ProductDetailModal from './widgets/components/ProductDetailPopup'
 import BuyProductPage from './navigation/NavigationPages/Pages/BuyProductPage';
 import CartPage from './navigation/NavigationPages/Pages/ProductCartPage';
 import FavProductPage from './navigation/NavigationPages/Pages/FavProductPage';
-import Sidebar from './widgets/components/SideBar';
 
 function App() {
 
   return (
     <Router>
       <div id='app-container__main'>
-
-      <div className="sm665:hidden">
-        <Navbar/>
-      </div>
-
-      <div className="hidden md:block">
-        <Sidebar/>
-      </div>
+      
+      <Navbar/>
 
       <Routes>
           <Route path="/" element={<HomePage />} />
