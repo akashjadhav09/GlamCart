@@ -21,12 +21,11 @@
   }
 
   .glam-cart-name-wrapper{
-    margin: 0 1.5em;
-    padding-bottom: 10px;
+    /* margin: 0 1.5em;
+    padding-bottom: 10px; */
   }
 
   .buttons-wrapper {
-    display: flex;
     align-items: center;
     gap: 0.3em;
     cursor: pointer;
