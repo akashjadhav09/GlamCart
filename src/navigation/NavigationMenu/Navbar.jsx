@@ -1,7 +1,7 @@
 import {React, useContext, useState}from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GoSidebarCollapse } from "react-icons/go";
 
 
 import Sidebar from '../../widgets/components/SideBar';
@@ -32,7 +32,7 @@ export default function Navbar() {
         
         <div className="logo-hamburger-wrapper__outer flex items-center justify-center gap-4">
           <div className="hamburger-wrapper mx-8 cursor-pointer" onClick={()=> handleShowSidebar()}>
-            <GiHamburgerMenu className="block md:hidden"/>
+            <GoSidebarCollapse className="block md:hidden"/>
           </div>
 
         <div className="glam-cart-name-wrapper">
