@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen, onClose }) {
     if (!isOpen) return null;
     return(
         <>
-            <div ref={sidebarRef} className="sidebar-main-wrapper__outer h-full bg-slate-200 fixed z-[1]">
+            <div ref={sidebarRef} className="sidebar-main-wrapper__outer h-full bg-slate-200 fixed z-[11]">
                 <div className="sidebar-main-wrapper__inner">
                     
                     <div className="profile-circle flex justify-center py-3 border-b border-b-slate-300">
