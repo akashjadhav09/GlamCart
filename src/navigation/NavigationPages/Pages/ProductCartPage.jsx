@@ -20,16 +20,23 @@ function CartPage (){
         navigate("/buy-product", { state: {product} });
     }
 
+    function handleExploreMoreProducts(){
+        navigate("/home");
+    }
+
     return(
         <div className="cart-page-wrapper__outer">
              
             {toast && <ToastNotification message={toast} onClose={() => setToast(null)} isDeleted={true}/>}
 
-            <div className="cart-page-wrapper__inner">
-                <div className="cart-label-wrapper">
-                    <h3>Shopping Cart</h3>
-                    <h5>{cartProducts.length ? `You have ${cartProducts.length} items in cart` : 'Your cart is empty. Start shopping now!'}</h5>
-                </div>
+            <div className="cart-label-wrapper">
+                <h3>Shopping Cart</h3>
+                <h5>{cartProducts.length ? `You have ${cartProducts.length} items in cart` : 'Your cart is empty. Start shopping now!'}</h5>
+            </div>
+
+            {cartProducts && cartProducts.length > 0 ?
+            (
+                <div className="cart-page-wrapper__inner">
                 {cartProducts.map((product,index)=>{
                     return(
                     <div key={index} className="product-cart__inner">
@@ -53,6 +60,11 @@ function CartPage (){
                 })}
                 
             </div>
+            ) 
+            :
+            (<div className="product-explore-more-btn text-center m-4">
+                <button className="explore-more-btn" onClick={()=> handleExploreMoreProducts()}>Fill Your Cart</button>
+            </div>) }            
         </div>
     )
 }

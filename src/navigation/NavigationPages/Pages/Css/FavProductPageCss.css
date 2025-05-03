@@ -103,7 +103,7 @@
     color: #e53935;
     font-size: 20px;
     cursor: pointer;
-    z-index: 2;
+    /* z-index: 2; */
     transition: transform 0.2s ease;
   }
   

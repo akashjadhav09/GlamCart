@@ -1,4 +1,4 @@
-.out-story-desc {
+/* .out-story-desc {
     display: flex    ;
     align-items: center;
     gap: 1em;
@@ -87,4 +87,9 @@
 }
 .small-card h4{
     margin: unset;
+} */
+
+.heading span{
+    border-bottom: 4px solid orange;
+    padding-bottom: 5px;
 }

@@ -1,6 +1,5 @@
-import {React, useRef, useEffect} from "react";
-import { Link } from 'react-router-dom';
-
+import {React, useState, useRef, useEffect} from "react";
+import { Link, useLocation } from 'react-router-dom';
 
 import { FaHome, FaShopify  } from "react-icons/fa";
 import { MdCircleNotifications } from "react-icons/md";
@@ -9,7 +8,13 @@ import { AiFillMobile } from "react-icons/ai";
 import '../componentCss/SideBarWidgetCss.css';
 
 export default function Sidebar({ isOpen, onClose }) {
+    const [isHomePageVisible, SetIsHomePageVisible] = useState(false);
+    const [isDiscoverDealsVisible, SetIsDiscoverDealsVisible] = useState(false);
+    const [isNewArrivalVisible, SetIsNewArrivalVisible] = useState(false);
+    const [isAboutUsVisible, SetIsAboutUsVisible] = useState(false);
+
     const sidebarRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -17,6 +22,11 @@ export default function Sidebar({ isOpen, onClose }) {
                 onClose(); 
             }
         }
+        
+        SetIsHomePageVisible(location.pathname === '/home');
+        SetIsDiscoverDealsVisible(location.pathname === '/shopnow');
+        SetIsNewArrivalVisible(location.pathname === '/new-arrivals');
+        SetIsAboutUsVisible(location.pathname === '/Aboutus');
 
         document.addEventListener("mousedown", handleClickOutside);
         document.addEventListener("scroll", handleClickOutside);
@@ -24,7 +34,7 @@ export default function Sidebar({ isOpen, onClose }) {
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("scroll", handleClickOutside);
         };
-    }, [onClose]);
+    }, [onClose,location.pathname]);
 
     if (!isOpen) return null;
     return(
@@ -41,25 +51,25 @@ export default function Sidebar({ isOpen, onClose }) {
                             <div className="nav-link-lable-wrapper">
                                 <Link to="/home">
                                     <FaHome className="nav-icon"></FaHome>
-                                    <div className="nav-label">Home</div>
+                                    <div className={`nav-label ${isHomePageVisible ? 'text-[#5f7ad2]' : ''}`}>Home</div>
                                 </Link>
                             </div>
                             <div className="nav-link-lable-wrapper">
                                 <Link to="/shopnow">
                                     <FaShopify  className="nav-icon"></FaShopify >
-                                    <div className="nav-label">Discover Deals</div>
+                                    <div className={`nav-label ${isDiscoverDealsVisible ? 'text-[#5f7ad2]' : ''}`}>Discover Deals</div>
                                 </Link>
                             </div>
                             <div className="nav-link-lable-wrapper">
                                 <Link to="/new-arrivals">
                                     <MdCircleNotifications  className="nav-icon"></MdCircleNotifications >
-                                    <div className="nav-label">New Arrival</div>
+                                    <div className={`nav-label ${isNewArrivalVisible ? 'text-[#5f7ad2]' : ''}`}>New Arrival</div>
                                 </Link>
                             </div>
                             <div className="nav-link-lable-wrapper">
                                 <Link to="/Aboutus">
                                     <AiFillMobile  className="nav-icon"></AiFillMobile >
-                                    <div className="nav-label">About Us</div>
+                                    <div className={`nav-label ${isAboutUsVisible ? 'text-[#5f7ad2]' : ''}`}>About Us</div>
                                 </Link>
                             </div>
                         </div>
