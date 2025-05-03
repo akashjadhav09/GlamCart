@@ -12,8 +12,8 @@ export default function NewArrivalPage() {
                     <span className="new-arrival-label">New Arrivals</span>
                 </div>
 
-                <div className="new-arrival-grid">  
-                    <div className="new-arrival-item item item-1">
+                <div className="new-arrival-wrapper_main flex flex-wrap gap-4 m-4 md:grid grid-cols-[2fr_1fr] p-4 md:gap-4">  
+                    <div className="row-span-3 new-arrival-item item item-1">
                         <img 
                             src="https://cdn.dummyjson.com/products/images/fragrances/Gucci%20Bloom%20Eau%20de/thumbnail.png"
                             alt="new-arrival-product" 
@@ -21,7 +21,7 @@ export default function NewArrivalPage() {
                         />
                         <div className="new-arrival-detail-wrapper">
                             <div className="text">Gucci Eau de</div>
-                            <div className="description">Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine.consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences</div>
+                            <div className="description">Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine.consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</div>
                         </div>
                     </div>          
                     <div className="new-arrival-item item item-2">
@@ -32,7 +32,7 @@ export default function NewArrivalPage() {
                         />
                         <div className="new-arrival-detail-wrapper">
                             <div className="text">Red Lipstick</div>
-                            <div className="description">The Red Lipstick is a classic and bold choice for adding a pop of color to your lips.</div>
+                            <div className="description">The Red Lipstick is a classic and bold choice for adding a pop of color to your lips.but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</div>
                         </div>
                     </div>
                     <div className="new-arrival-item item item-3">
@@ -43,7 +43,7 @@ export default function NewArrivalPage() {
                         />
                         <div className="new-arrival-detail-wrapper">
                             <div className="text">Powder Canister</div>
-                            <div className="description">The Powder Canister is a finely milled setting powder designed to set makeup and control shine.</div>
+                            <div className="description">The Powder Canister is a finely milled setting powder designed to set makeup and control shine.but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</div>
                         </div>
                     </div>
                     <div className="new-arrival-item item item-4">
@@ -54,7 +54,7 @@ export default function NewArrivalPage() {
                         />
                         <div className="new-arrival-detail-wrapper">
                             <div className="text">Chanel Coco Eau De</div>
-                            <div className="description">Coco Noir by Chanel is an elegant and mysterious fragrance, featuring notes of grapefruit, rose, and sandalwood.</div>
+                            <div className="description">Coco Noir by Chanel is an elegant and mysterious fragrance, featuring notes of grapefruit, rose, and sandalwood.which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?</div>
                         </div>
                     </div>                    
                 </div>

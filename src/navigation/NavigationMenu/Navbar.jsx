@@ -1,4 +1,6 @@
-import {React, useContext, useState}from "react";
+import {React, useContext, useEffect, useState}from "react";
+import { useLocation } from 'react-router-dom';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 import { GoSidebarCollapse } from "react-icons/go";
@@ -12,6 +14,19 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { likedProducts, cartProducts } = useContext(ProductContext);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
+  const [isHomePageVisible, SetIsHomePageVisible] = useState(false);
+  const [isDiscoverDealsVisible, SetIsDiscoverDealsVisible] = useState(false);
+  const [isNewArrivalVisible, SetIsNewArrivalVisible] = useState(false);
+  const [isAboutUsVisible, SetIsAboutUsVisible] = useState(false);
+  const location = useLocation();
+
+
+  useEffect(() => {
+    SetIsHomePageVisible(location.pathname === '/home');
+    SetIsDiscoverDealsVisible(location.pathname === '/shopnow');
+    SetIsNewArrivalVisible(location.pathname === '/new-arrivals');
+    SetIsAboutUsVisible(location.pathname === '/Aboutus');
+  }, [location.pathname]);
 
   function openFavProductList(){
     navigate('/liked-product-page')    
@@ -42,19 +57,19 @@ export default function Navbar() {
        
           <div className="buttons-wrapper hidden md:flex">
             <div className="onsale-button-wrapper">
-                <h4 className="nav-btn"><Link to="/home">Home</Link></h4>
+                <h4 className={`nav-btn ${isHomePageVisible ? 'text-[#571974]' : ''}`}><Link to="/home">Home</Link></h4>
             </div>
 
             <div className="onsale-button-wrapper">
-                <h4 className="nav-btn"><Link to="/shopnow">Discover Deals</Link></h4>
+                <h4 className={`nav-btn ${isDiscoverDealsVisible ? 'text-[#571974]' : ''}`}><Link to="/shopnow">Discover Deals</Link></h4>
             </div>
 
             <div className="new-arrival-button-wrapper">
-                <h4 className="nav-btn"><Link to="/new-arrivals">New Arrival</Link></h4>
+                <h4 className={`nav-btn ${isNewArrivalVisible ? 'text-[#571974]' : ''}`}><Link to="/new-arrivals">New Arrival</Link></h4>
             </div>
 
             <div className="contact-button-wrapper ">
-                <h4 className="nav-btn"><Link to="/Aboutus">About Us</Link></h4>
+                <h4 className={`nav-btn ${isAboutUsVisible ? 'text-[#571974]' : ''}`}><Link to="/Aboutus">About Us</Link></h4>
             </div>
           </div>
 
