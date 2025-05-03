@@ -19,7 +19,7 @@ export default function HomePage() {
     return (
         <div className="home-page-wrapper__outer">
             <div className="home-page-wrapper__inner">
-                {/* <Carousel className="carousel" /> */}
+                <Carousel className="carousel" />
                 <h3 className="explore-products-text"><span className="explore-product-label">Explore Products</span></h3>
                 <div className="inital-product-wrapper">
                     {productDetails.products.slice(0, 8).map((product, _index) => (
