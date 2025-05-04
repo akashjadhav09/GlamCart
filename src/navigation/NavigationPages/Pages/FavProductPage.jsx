@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../../context/ProductData";
 import ToastNotification from '../../../widgets/components/ToastNotification';
 import { convertPriceToRupees } from '../../../helper/Helper';
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 
 import './Css/FavProductPageCss.css';
 
@@ -77,7 +78,7 @@ function FavProductPage (){
             </div>)
             }
 
-
+            <ScrollToTop />
         </>
         
     )

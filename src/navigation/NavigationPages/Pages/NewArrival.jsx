@@ -2,6 +2,8 @@ import React from "react";
 
 import ServiceCard from '../../../widgets/components/ServiceCard';
 import FooterSection from "./footer";
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
+
 import './Css/NewArrivalPageCss.css';
 
 export default function NewArrivalPage() {
@@ -60,6 +62,7 @@ export default function NewArrivalPage() {
                 </div>
                 <ServiceCard/>
                 <FooterSection/>
+                <ScrollToTop />
             </div>
         </div>
     );

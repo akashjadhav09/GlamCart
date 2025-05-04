@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../../context/ProductData";
 import ProductCard from '../../../widgets/components/CardWidget';
 import FooterSection from '../Pages/footer';
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 
 import './Css/ShopNowPageCSS.css';
 
@@ -31,6 +32,8 @@ export default function ShopNowPage(){
                     })}
                 </div>
             </div>
+            
+            <ScrollToTop />
             <FooterSection />
         </>
     )

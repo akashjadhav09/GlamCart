@@ -5,6 +5,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 import { ProductContext } from "../../../context/ProductData";
 import ToastNotification from '../../../widgets/components/ToastNotification';
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 
 import './Css/ProductCartPage.css';
 
@@ -64,7 +65,8 @@ function CartPage (){
             :
             (<div className="product-explore-more-btn text-center m-4">
                 <button className="explore-more-btn" onClick={()=> handleExploreMoreProducts()}>Fill Your Cart</button>
-            </div>) }            
+            </div>) }     
+            <ScrollToTop />       
         </div>
     )
 }

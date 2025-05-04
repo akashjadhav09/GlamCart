@@ -2,6 +2,7 @@ import { React, useContext, useState, useRef, useEffect  } from "react";
 
 import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 import { convertPriceToRupees } from '../../../helper/Helper';
 
 import './Css/BuyProductPageCss.css';
@@ -275,6 +276,7 @@ function BuyProductPage () {
                     </div>
 
                 </div>
+            <ScrollToTop />
             <FooterSection/>
         </div>
     )
