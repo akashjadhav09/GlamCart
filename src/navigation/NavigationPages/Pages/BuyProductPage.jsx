@@ -14,6 +14,8 @@ function BuyProductPage () {
     const [cardCvvNumber, setCardCvvNumber] = useState('');
     const [cardMonthYearValue, setCardMonthYearValue] = useState('');
     const [selectedCardType, setSelectedCardType] = useState('');
+    const [grandTotal, setGrandTotal] = useState('');
+    const [isOrderNowVisible, setIsOrderNowVisible] = useState(false);
    
     const productReviewDivRef = useRef(null);
     const cardTypes = [
@@ -35,7 +37,22 @@ function BuyProductPage () {
 
     const handleScrollToProductReviewDiv = () => {
         productReviewDivRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      };
+    };
+
+    const handleTotal = (totalQty, price) => {
+        const qty = Number(totalQty);
+        const unitPrice = Number(price);
+        const total = qty * unitPrice;
+      
+        if (!isNaN(total) && qty > 0 && unitPrice >= 0) {
+          setGrandTotal(total.toFixed(2));
+          setIsOrderNowVisible(true);
+        } else {
+          setGrandTotal('');
+          setIsOrderNowVisible(false);
+        }
+      };     
+      
     
     return(
         <div className="buy-product-wrapper__outer">
@@ -58,7 +75,7 @@ function BuyProductPage () {
                                 <img
                                     src={image}
                                     className="product-image-small"
-                                    onClick={() => getClikedImagePath(image)}
+                                    
                                 />
                                 </div>
                             ))}
@@ -164,9 +181,11 @@ function BuyProductPage () {
                     
                         <div className="product-billing-wrapper__inner flex flex-col md:flex-row gap-6">
                             <div className="product-count-wrapper flex-1">
-                            <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Select Count</h5>
+                            <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Count</h5>
                             <input
                                 type="number"
+                                min={0}
+                                onChange={(event)=>handleTotal(event.target.value, selectedProduct.price)}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 placeholder="0"
                             />
@@ -261,13 +280,15 @@ function BuyProductPage () {
                             <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Total</h5>
                             <input
                                 type="text"
-                                placeholder="Total will be appear here"
+                                placeholder="Total will be appear here / Select count"
+                                readOnly
+                                value={grandTotal ? grandTotal : ''}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                             />
                             </div>
 
                             <div className="btn-wrapper">
-                            <button className="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+                            <button className={`w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition ${isOrderNowVisible ? 'opacity-100 cursor-pointer pointer-events-auto' : 'opacity-25 cursor-not-allowed pointer-events-none'}`}>
                                 Order now
                             </button>
                             </div>
