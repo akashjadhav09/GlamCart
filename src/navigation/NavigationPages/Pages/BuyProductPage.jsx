@@ -1,4 +1,4 @@
-import { React, useContext, useState, useRef  } from "react";
+import { React, useContext, useState, useRef, useEffect  } from "react";
 
 import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
@@ -9,7 +9,25 @@ import './Css/BuyProductPageCss.css';
 function BuyProductPage () {
     const { selectedProduct } = useContext(ProductContext);
     const [selectedImgPath, setSelectedImgPath] = useState(null);
+    const [cardNameValue, setCardNameValue] = useState('');
+    const [cardNumberValue, setCardNumberValue] = useState('');
+    const [cardCvvNumber, setCardCvvNumber] = useState('');
+    const [cardMonthYearValue, setCardMonthYearValue] = useState('');
+    const [selectedCardType, setSelectedCardType] = useState('');
+   
     const productReviewDivRef = useRef(null);
+    const cardTypes = [
+    { name: 'Master', base: 'bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-100' },
+    { name: 'Visa', base: 'bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100' },
+    { name: 'Rupay', base: 'bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100' }
+    ];
+
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' 
+          });
+    },[])
 
     const getClikedImagePath = (path)=>{
         setSelectedImgPath(path);
@@ -22,7 +40,7 @@ function BuyProductPage () {
     return(
         <div className="buy-product-wrapper__outer">
 
-            <div class="new-arrival-wrapper"><span class="new-arrival-label">Place Your Order</span></div>
+            <div className="new-arrival-wrapper"><span className="new-arrival-label">Place Your Order</span></div>
 
             <div className="buy-product-wrapper__inner">
                 <div className="product-image-wrapper h-1/2 flex items-center flex-col">                   
@@ -158,10 +176,19 @@ function BuyProductPage () {
                         <div className="card-details-wrapper__outer space-y-6">
                             <div className="card-label text-xl font-semibold text-gray-800 dark:text-white">Card Details</div>
 
-                            <div className="card-type-wrapper flex flex-wrap gap-4">
-                            <div className="card bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-100 px-4 py-2 rounded shadow-sm">Master</div>
-                            <div className="card bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-4 py-2 rounded shadow-sm">Visa</div>
-                            <div className="card bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 px-4 py-2 rounded shadow-sm">Rupay</div>
+                            <div className="card-type-wrapper flex flex-wrap gap-4 cursor-pointer">
+                                {cardTypes.map((card) => (
+                                    <div
+                                    key={card.name}
+                                    onClick={() => setSelectedCardType(card.name)}
+                                    className={`card px-4 py-2 rounded shadow-sm transition-colors duration-300
+                                        ${card.base}
+                                        ${selectedCardType === card.name ? 'ring-2 ring-offset-2 ring-offset-white ring-sky-500 dark:ring-white' : ''}
+                                    `}
+                                    >
+                                    {card.name}
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="card-details__inner grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,7 +196,14 @@ function BuyProductPage () {
                                 <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name on card</h5>
                                 <input
                                 type="text"
-                                placeholder="Enter name here"
+                                placeholder="David Lee"
+                                value={cardNameValue}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^[a-zA-Z]*$/.test(value)) {
+                                        setCardNameValue(value);
+                                    }
+                                  }}                                  
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
@@ -179,6 +213,13 @@ function BuyProductPage () {
                                 <input
                                 type="text"
                                 placeholder="1234 5678 9012 3456"
+                                value={cardNumberValue}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^\d*$/.test(value)) {
+                                        setCardNumberValue(value);
+                                    }
+                                }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
@@ -188,6 +229,13 @@ function BuyProductPage () {
                                 <input
                                 type="text"
                                 placeholder="MM/YY"
+                                value={cardMonthYearValue}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^[\d/]*$/.test(value)) {
+                                        setCardMonthYearValue(value);
+                                    }
+                                  }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
@@ -197,6 +245,13 @@ function BuyProductPage () {
                                 <input
                                 type="text"
                                 placeholder="123"
+                                value={cardCvvNumber}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^\d*$/.test(value)) {
+                                        setCardCvvNumber(value);
+                                    }
+                                }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
