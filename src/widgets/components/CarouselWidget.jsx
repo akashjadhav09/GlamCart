@@ -25,19 +25,38 @@ const carouselData = [
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlayOn, setIsAutoPlay] = useState(true);
+  const [isForward, setIsForward] = useState(true); 
   const intervalRef = useRef(null);
+
+ 
+  useEffect(() => {
+    clearInterval(intervalRef.current);
+
+    if (currentIndex === carouselData.length - 1) {
+      setIsForward(false);
+    } else if (currentIndex === 0) {
+      setIsForward(true);
+    }
+
+    intervalRef.current = setInterval(() => {
+      if (isForward) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }, 4000);
+
+    return () => clearInterval(intervalRef.current);
+
+  }, [currentIndex, isForward]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselData.length);
   };
 
-  useEffect(() => {
-    intervalRef.current = setInterval(nextSlide, 4000);
-
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-  }, []);
+  const prevSlide = ()=>{
+    setCurrentIndex((prevIndex) => prevIndex === 0 ? carouselData.length - 1 : prevIndex - 1);
+  };
 
   const stopCarouselSlider = () => {
     setIsAutoPlay(prev => !prev);
@@ -59,20 +78,16 @@ const Carousel = () => {
       </button>
 
       
-      <button
-        onClick={() =>
-          setCurrentIndex((prev) =>
-            prev === 0 ? carouselData.length - 1 : prev - 1
-          )
-        }
+      {/* <button
+        onClick={prevSlide}
         className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 transition"
         aria-label="Previous Slide"
-      > ❮ </button>
+      > ❮ </button> */}
 
       <div className="w-full overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}          
         >
           {carouselData.map((item, index) => (
             <div
@@ -97,11 +112,12 @@ const Carousel = () => {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={nextSlide}
         className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 transition"
         aria-label="Next Slide"
-      > ❯ </button>
+      > ❯ </button> */}
+
     </div>
   );
 };
