@@ -4,6 +4,7 @@ import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
 import ScrollToTop from '../../../widgets/components/ScrollToTop';
 import { convertPriceToRupees } from '../../../helper/Helper';
+import PlaceOrderCustomModal from '../../../widgets/custom-modal/ModalWidget/PlaceOrderCustomModal';
 
 import './Css/BuyProductPageCss.css';
 
@@ -17,6 +18,7 @@ function BuyProductPage () {
     const [selectedCardType, setSelectedCardType] = useState('');
     const [grandTotal, setGrandTotal] = useState('');
     const [isOrderNowVisible, setIsOrderNowVisible] = useState(false);
+    const [showPlaceOrderModal, setShowPlaceOrderModal] = useState(false);
    
     const productReviewDivRef = useRef(null);
     const cardTypes = [
@@ -30,7 +32,28 @@ function BuyProductPage () {
             top: 0,
             behavior: 'smooth' 
           });
-    },[])
+
+          const rootElement = document.getElementById('root');
+       
+          if (rootElement) {
+            if (showPlaceOrderModal) {
+              rootElement.style.overflow = 'hidden';
+              rootElement.style.pointerEvents = 'none';
+              rootElement.style.cursor = 'not-allowed';
+            } else {
+              rootElement.style.overflow = 'auto';
+              rootElement.style.pointerEvents = 'auto';
+              rootElement.style.cursor = 'auto';
+            }
+        
+            return () => {
+              rootElement.style.overflow = 'auto';
+              rootElement.style.pointerEvents = 'auto';
+              rootElement.style.cursor = 'auto';
+            };
+          }
+
+    },[showPlaceOrderModal])
 
     const getClikedImagePath = (path)=>{
         setSelectedImgPath(path);
@@ -54,6 +77,11 @@ function BuyProductPage () {
         }
       };     
       
+      function handleOpenplaceOrderModal () {
+          console.log("show", showPlaceOrderModal);        
+        setShowPlaceOrderModal(true);
+        console.log("show", showPlaceOrderModal);        
+      }
     
     return(
         <div className="buy-product-wrapper__outer">
@@ -63,10 +91,11 @@ function BuyProductPage () {
             <div className="buy-product-wrapper__inner">
                 <div className="product-image-wrapper h-1/2 flex items-center flex-col">                   
                     <div className="product-image__inner flex items-center justify-center h-64 w-64 bg-gray-100 rounded overflow-hidden my-1">
-                        <img
+                        <img                            
                             src={selectedImgPath || selectedProduct.thumbnail}
                             alt={selectedProduct.title}
                             className="h-full w-full object-cover"
+                            onClick={()=>getClikedImagePath(selectedImgPath)}
                         />
                     </div>
 
@@ -289,13 +318,19 @@ function BuyProductPage () {
                             </div>
 
                             <div className="btn-wrapper">
-                            <button className={`w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition ${isOrderNowVisible ? 'opacity-100 cursor-pointer pointer-events-auto' : 'opacity-25 cursor-not-allowed pointer-events-none'}`}>
+                            <button 
+                            onClick={handleOpenplaceOrderModal}
+                            className={`w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition ${isOrderNowVisible ? 'opacity-100 cursor-pointer pointer-events-auto' : 'opacity-25 cursor-not-allowed pointer-events-none'}`}>
                                 Order now
                             </button>
                             </div>
                         </div>
                     </div>
-
+                    {showPlaceOrderModal && (
+                        <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <PlaceOrderCustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared."/>
+                        </div>
+                    )}
                 </div>
             <ScrollToTop />
             <FooterSection/>
