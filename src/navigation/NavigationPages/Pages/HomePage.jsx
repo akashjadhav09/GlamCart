@@ -5,6 +5,7 @@ import { ProductContext } from "../../../context/ProductData";
 import Carousel from "../../../widgets/components/CarouselWidget";
 import ProductCard from "../../../widgets/components/CardWidget"; 
 import FooterSection from '../Pages/footer';
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 
 import "./Css/HomePageCss.css";
 
@@ -32,6 +33,7 @@ export default function HomePage() {
                     <button className="explore-more-btn" onClick={()=> handleExploreMoreProducts()}>Explore More</button>
                 </div>
                 <FooterSection/>
+                <ScrollToTop />
             </div>
         </div>
     );

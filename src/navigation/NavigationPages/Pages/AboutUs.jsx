@@ -3,6 +3,7 @@ import { GrFireball, GrSafariOption , GrUbuntu , GrCloudlinux  } from "react-ico
 
 import FooterSection from '../Pages/footer';
 import ProfileCard from "../../../widgets/components/ProfileCard";
+import ScrollToTop from '../../../widgets/components/ScrollToTop';
 
 import './Css/AboutUsCss.css';
 
@@ -125,6 +126,7 @@ export default function AboutUs(){
                         </div>
                     </div>
                     <FooterSection/>
+                    <ScrollToTop />
                 </div>
             </div>
         </>
