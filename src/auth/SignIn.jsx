@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './css/LoginCss.css'
+import './css/signIn.css'
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 
-export default function LogInForm () {
+export default function SignInForm () {
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
@@ -13,6 +13,12 @@ export default function LogInForm () {
       // Perform login logic
       navigate('/'); // Redirect to home after login
     };
+
+    function handleRouteToSignUp(){
+        console.log('Handle route')
+        navigate('/signup');
+    }
+
     return(
         <div className='login-wrapper__outer'>
             <div className='login-main-wrapper__outer'>
@@ -25,7 +31,7 @@ export default function LogInForm () {
                             <img className='site-logo' src='../../public/assets/icons/site-icon.jpg' alt='site-logo' />
                             <span>Glam Cart</span>
                         </div>
-                        <div className='welcome-message-wrapper'>Welcome Back</div>
+                        <div className='welcome-message-wrapper'>Welcome</div>
                         <div className='instructions-wrapper'>Please login to your account</div>
                    </div>
                     <div className='credential-wrapper'>
@@ -50,7 +56,7 @@ export default function LogInForm () {
                     <div className='forgot-password-msg'>Forgot Password?</div>
                     <button className='login-button'>Login</button>
                     <div className='signin-required-wrapper'>
-                        <div className='signin-required-msg'>Dont't have an account?<span> Signup</span></div>
+                        <div className='signin-required-msg'>Dont't have an account?<span className='signup-label' onClick={handleRouteToSignUp}> Signup</span></div>
                     </div>
                 </div>
             </div>

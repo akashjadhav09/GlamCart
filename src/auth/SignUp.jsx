@@ -1,6 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+
 import './css/SignUpCss.css'
 
 export default function SignUpForm (){
+    const navigate = useNavigate();
+
+    function handleRouteToSignIn(){
+        console.log('Handle route--->')
+        navigate('/');
+    }
+
     return(
         <div className='signup-main-wrapper__outer'>
             <div className='signup-wrapper__outer'>
@@ -10,7 +19,7 @@ export default function SignUpForm (){
                 <div className='signup-wrapper-inner__main'>
                    <div className='detail-wrapper__outer'>                       
                         <div className='create-account-message'>Create an account</div>
-                        <div className='instructions-wrapper'>Already have an account? <span> Login</span></div>
+                        <div className='instructions-wrapper'>Already have an account? <span className='signin-label' onClick={handleRouteToSignIn}> Login</span></div>
                    </div>
                     <div className='credential-wrapper'>
                         <div className='user-name-detail-wrapper'>

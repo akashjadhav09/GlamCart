@@ -128,3 +128,7 @@ h4{
     cursor: pointer;
 }
 
+.signup-label:hover {
+    color: aqua;
+}
+
