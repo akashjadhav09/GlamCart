@@ -32,26 +32,30 @@ function BuyProductPage () {
             top: 0,
             behavior: 'smooth' 
           });
-
-          const rootElement = document.getElementById('root');
+        
+        const rootElement = document.getElementById('root');
+        const placeOrderModal = document.getElementById('place-order-modal');
        
-          if (rootElement) {
+        if (rootElement) {
             if (showPlaceOrderModal) {
               rootElement.style.overflow = 'hidden';
               rootElement.style.pointerEvents = 'none';
-              rootElement.style.cursor = 'not-allowed';
+            //   rootElement.style.cursor = 'not-allowed';
+              if(placeOrderModal) placeOrderModal.style.pointerEvents = 'auto';
             } else {
               rootElement.style.overflow = 'auto';
               rootElement.style.pointerEvents = 'auto';
               rootElement.style.cursor = 'auto';
+              if(placeOrderModal) placeOrderModal.style.pointerEvents = 'none';
             }
         
             return () => {
               rootElement.style.overflow = 'auto';
               rootElement.style.pointerEvents = 'auto';
               rootElement.style.cursor = 'auto';
+              if(placeOrderModal) placeOrderModal.style.pointerEvents = 'auto';
             };
-          }
+        }
 
     },[showPlaceOrderModal])
 
@@ -78,9 +82,7 @@ function BuyProductPage () {
       };     
       
       function handleOpenplaceOrderModal () {
-          console.log("show", showPlaceOrderModal);        
         setShowPlaceOrderModal(true);
-        console.log("show", showPlaceOrderModal);        
       }
     
     return(
@@ -265,7 +267,7 @@ function BuyProductPage () {
                                 value={cardNumberValue}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (/^\d*$/.test(value)) {
+                                    if (/^\d*$/.test(value) && value.length <= 16) {
                                         setCardNumberValue(value);
                                     }
                                 }}
@@ -281,8 +283,8 @@ function BuyProductPage () {
                                 value={cardMonthYearValue}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (/^[\d/]*$/.test(value)) {
-                                        setCardMonthYearValue(value);
+                                    if (/^[\d/]*$/.test(value) && value.length <= 5) {                                       
+                                        setCardMonthYearValue(value);                                     
                                     }
                                   }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
@@ -297,7 +299,7 @@ function BuyProductPage () {
                                 value={cardCvvNumber}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (/^\d*$/.test(value)) {
+                                    if (/^\d*$/.test(value) && value.length <= 3) {
                                         setCardCvvNumber(value);
                                     }
                                 }}
@@ -310,7 +312,7 @@ function BuyProductPage () {
                             <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Total</h5>
                             <input
                                 type="text"
-                                placeholder="Total will be appear here / Select count"
+                                placeholder="Select count - Total will be appear here"
                                 readOnly
                                 value={grandTotal ? grandTotal : ''}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"

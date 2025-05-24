@@ -8,7 +8,8 @@ export default function PlaceOrderCustomModal({ onClose, message }) {
     <div className=''>
       <div 
         onClick={(e) => e.stopPropagation()}
-        className='place-order-modal__outer bg-white h-1/2 rounded shadow-lg relative p-4 m-4'>
+        id="place-order-modal"
+        className='place-order-modal__outer bg-white h-1/2 rounded shadow-lg relative p-4 m-4 z-50'>
         <div className='flex justify-end border-b border-gray-300 pb-1 cursor-pointer' onClick={onClose}>
           <IoMdClose className='text-2xl text-gray-700' />
         </div>
