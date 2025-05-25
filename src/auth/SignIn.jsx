@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './css/signIn.css'
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 import { ProductContext } from '../context/ProductData';
 
@@ -48,56 +47,73 @@ export default function SignInForm () {
     }
 
     return(
-        <div className='login-wrapper__outer'>
-            <div className='login-main-wrapper__outer'>
-                <div className='poster-wrapper'>
-                    <img className='login-poster' src='../../public/assets/images/LoginPoster.jpg' alt='login-poster' />
+        <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl bg-white shadow-lg p-6 rounded-2xl">
+                <div className="w-full md:w-1/2 max-w-sm h-[200px] md:h-[350px]">
+                    <img
+                        className="h-full w-full object-cover rounded-2xl"
+                        src="../../public/assets/images/LoginPoster.jpg"
+                        alt="login-poster"
+                    />
                 </div>
-                <div className='login-wrapper-inner__main'>
-                   <div className='detail-wrapper__outer'>
-                        <div className='site-logo-wrapper'>
-                            <img className='site-logo' src='../../public/assets/icons/site-icon.jpg' alt='site-logo' />
-                            <span>Glam Cart</span>
-                        </div>
-                        <div className='welcome-message-wrapper'>Welcome</div>
-                        <div className='instructions-wrapper'>Please login to your account</div>
-                   </div>
-                    <div className='credential-wrapper'>
-                        <h4>Username</h4>
-                        <input  type="text"
-                            className="user-input input-type__username" 
-                            value={userName}
-                            onChange={(e)=>setUserName(e.target.value)}
-                            required/>
 
-                        <h4>Password</h4>
-                        <div className='password-wrapper'>
-                            <input  type={ showPassword ? "text" : "password" } 
-                                minLength="4" maxLength="10" 
-                                className="user-input input-type__password" 
-                                value={userPass}
-                                onChange={(e)=>setUserPass(e.target.value)}
-                                required/>
-
-                            {showPassword ? 
-                                (<span className='show-password-icon' onClick={() => setShowPassword(false)}>
-                                    <MdOutlineVisibilityOff/>
-                                </span>) 
-                                : 
-                                (<span className='show-password-icon' onClick={() => setShowPassword(true)}>
-                                    <MdOutlineVisibility />
-                                </span>)
-                            }
-                            
-                        </div>
+                <div className="w-full md:w-1/2 max-w-sm">
+                    <div className="text-center text-3xl font-semibold mb-2">Welcome</div>
+                    <div className="text-center text-gray-600 mb-4 font-medium">
+                        Sign in for a better shopping experience
                     </div>
-                    <div className='forgot-password-msg'>Forgot Password?</div>
-                    <button className='login-button' onClick={handleLogin}>Login</button>
-                    <div className='signin-required-wrapper'>
-                        <div className='signin-required-msg'>Dont't have an account?<span className='signup-label' onClick={handleRouteToSignUp}> Signup</span></div>
+
+                    <div className="space-y-4">
+                        <div>
+                        <label className="block font-medium">Username</label>
+                        <input
+                            type="text"
+                            className="w-full border border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            placeholder='Enter Username'
+                            required
+                        />
+                        </div>
+
+                        <div>
+                        <label className="block font-medium">Password</label>
+                        <div className="relative">
+                            <input
+                            type={showPassword ? "text" : "password"}
+                            minLength="4"
+                            maxLength="10"
+                            placeholder='Enter Password'
+                            className="w-full border border-gray-300 rounded-xl px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            value={userPass}
+                            onChange={(e) => setUserPass(e.target.value)}
+                            required
+                            />
+                            <span
+                            className="absolute right-3 top-2.5 cursor-pointer text-gray-600"
+                            onClick={() => setShowPassword(!showPassword)}
+                            >
+                            {showPassword ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+                            </span>
+                        </div>
+                        </div>
+
+                        <button
+                            className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-xl"
+                            onClick={handleLogin}>Sign In
+                        </button>
+                    </div>
+
+                    <div className="text-center text-sm text-gray-600 mt-4">
+                        Don’t have an account?
+                    </div>
+                    <div
+                        className="text-center text-blue-500 hover:underline cursor-pointer text-sm"
+                        onClick={handleRouteToSignUp}>Sign Up
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }
