@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
 
 import './App.css'
 
-import LogInForm from './auth/Login'
+import SignInForm from './auth/SignIn'
 import SignUpForm from './auth/SignUp'
 import Navbar from './navigation/NavigationMenu/Navbar'
 import HomePage from './navigation/NavigationPages/Pages/HomePage'
@@ -14,18 +15,21 @@ import BuyProductPage from './navigation/NavigationPages/Pages/BuyProductPage';
 import CartPage from './navigation/NavigationPages/Pages/ProductCartPage';
 import FavProductPage from './navigation/NavigationPages/Pages/FavProductPage';
 
-function App() {
+import { ProductContext } from './context/ProductData';
 
+function App() {
+  const { validUser } = useContext(ProductContext);
   return (
     <Router>
       <div id='app-container__main'>
       
-      <Navbar/>
+      {validUser.length > 0 && <Navbar/>}
 
       <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<SignInForm />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<LogInForm />} />
+          <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
 
           <Route path="/new-arrivals" element={<NewArrivalPage />} />

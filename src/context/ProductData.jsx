@@ -9,6 +9,7 @@ export const ProductProvider = ({ children }) => {
   const [selectedProduct, setSelectedProduct] = useState(null); 
   const [cartProducts, setCartProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState([]);
+  const [validUser, setValidUser] = useState([]);
 
   const addToCart = (product) => {
     const alreadyInCart = cartProducts.some((p) => p.id === product.id);
@@ -31,8 +32,7 @@ export const ProductProvider = ({ children }) => {
   const removeFromFavProduct = (productId) => {
     setLikedProducts((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
-
-
+  
   return (
     <ProductContext.Provider value={{ 
         productDetails, 
@@ -44,7 +44,9 @@ export const ProductProvider = ({ children }) => {
         likedProducts,
         setLikedProducts,
         addToFavProduct,
-        removeFromFavProduct       
+        removeFromFavProduct,
+        validUser, 
+        setValidUser      
       }}>
 
       {children}      

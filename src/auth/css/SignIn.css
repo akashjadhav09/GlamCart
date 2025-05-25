@@ -76,7 +76,7 @@ h4{
     border-radius: 5px;
     box-sizing: border-box;
     margin-left: 1em;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
 }
 
 .user-input:focus-visible {
@@ -126,5 +126,9 @@ h4{
     top: 14%;
     font-size: 24px;
     cursor: pointer;
+}
+
+.signup-label:hover {
+    color: aqua;
 }
 
