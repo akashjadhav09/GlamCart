@@ -83,6 +83,16 @@ export default function SignUpForm (){
         navigate('/signin');
     }
 
+    function handleTermsAndConditionClick(){
+        const link = document.createElement('a');
+        link.href = '../../public/assets/docs/Terms.pdf'; 
+        console.log(" link.href ",  link.href)
+        link.download = 'TermsAndConditions.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     return(
         <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-6xl bg-white shadow-lg p-6 rounded-2xl">
@@ -178,8 +188,15 @@ export default function SignUpForm (){
                     onChange={(e) => setIsChecked(e.target.checked)}
                     />
                     <span className="text-sm text-gray-700">
-                    I agree to the <span className="underline">Terms & Conditions</span>
+                        I agree to the{' '}
+                        <span
+                            className="underline hover:text-blue-400 cursor-pointer"
+                            onClick={handleTermsAndConditionClick}
+                        >
+                            Terms & Conditions
+                        </span>
                     </span>
+
                 </div>
 
                 <button

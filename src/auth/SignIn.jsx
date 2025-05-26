@@ -38,7 +38,8 @@ export default function SignInForm () {
             }, 1000);
             navigate('/', { replace: true });
         }else{
-            alert("Invalid credentials...");
+            setShowCustomModal(true);
+            setcustomModalMessage('Invalid credentials.')
         }
 
         clearForm();
