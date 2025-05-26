@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useContext, useEffect, useState, useRef } from 'react';
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 import './App.css'
 
@@ -16,13 +17,13 @@ import CartPage from './navigation/NavigationPages/Pages/ProductCartPage';
 import FavProductPage from './navigation/NavigationPages/Pages/FavProductPage';
 
 import { ProductContext } from './context/ProductData';
-import PlaceOrderCustomModal from '../src/widgets/custom-modal/ModalWidget/PlaceOrderCustomModal';
+import CustomModal from './widgets/custom-modal/ModalWidget/CustomModal';
 
 function App() {
   const { validUser } = useContext(ProductContext);
   const [clicksPerSecond, setClicksPerSecond] = useState(0);
   const clickTimes = useRef([]);
-  const [showPlaceOrderModal, setShowPlaceOrderModal] = useState(false);
+  const [showPlaceOrderModal, setShowCustomModal] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   
   useEffect(()=>{
@@ -41,7 +42,7 @@ function App() {
     setClicksPerSecond(clickTimes.current.length);
 
     if(clicksPerSecond > 5){
-      setShowPlaceOrderModal(true);
+      setShowCustomModal(true);
       setNotificationMessage('Its bot or any automated script')
     }
   }
@@ -73,7 +74,7 @@ function App() {
 
       {showPlaceOrderModal && (
         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <PlaceOrderCustomModal onClose={() => setShowPlaceOrderModal(false)} message={notificationMessage}/>
+          <CustomModal onClose={() => setShowCustomModal(false)} message={notificationMessage} handleOkButtonClick={() => setShowCustomModal(false)} iconName={IoCheckmarkCircleOutline}  buttonText={'Ok'}/>
         </div>
       )}
     </>
