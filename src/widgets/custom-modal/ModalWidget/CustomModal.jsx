@@ -1,8 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
-export default function PlaceOrderCustomModal({ onClose, message }) {
+export default function CustomModal({ onClose, message, handleOkButtonClick, iconName:Icon, buttonText }) {
 
   return (
     <div className=''>
@@ -13,18 +12,18 @@ export default function PlaceOrderCustomModal({ onClose, message }) {
         <div className='flex justify-end border-b border-gray-300 pb-1 cursor-pointer' onClick={onClose}>
           <IoMdClose className='text-2xl text-gray-700' />
         </div>
-        <div className='tick-mak-icon-wrapper flex justify-center my-2 md:my-4 text-[60px]'>
-            <IoCheckmarkCircleOutline className='order-placed-tick-mark bg-blue-600 text-white rounded-full' />
+        <div className='tick-mak-icon-wrapper flex items-center justify-center my-2 md:my-4 text-[60px]'>
+            <Icon className='order-placed-tick-mark bg-blue-600 text-white rounded-full' />
         </div>
         <div className='text-lg mb-2 md:my-4 text-center'>
           {message}
         </div>
         <div className='flex justify-center'>
           <button
-            onClick={onClose}
+            onClick={handleOkButtonClick}
             className='px-4 py-2 md:my-1 bg-blue-600 text-white rounded hover:bg-blue-700'
           >
-            OK
+            {buttonText || "Ok"}
           </button>
         </div>
       </div>

@@ -1,18 +1,19 @@
 import  {React, useEffect, useState, useContext} from "react";
 import {MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 import { ProductContext } from "../../context/ProductData";
 import ToastNotification from './ToastNotification';
 import { convertPriceToRupees } from '../../helper/Helper';
-
+import CustomModal from "../custom-modal/ModalWidget/CustomModal";
 
 import '../componentCss/CardWidgetCss.css';
 
 export default function ProductCard({ product, alreadyLikedProductId }) {
     const [isFav, setIsFav] = useState(false);
     const [isShowFavIcon, setIsShowFavIcon] = useState(false);
-    const { setSelectedProduct } = useContext(ProductContext);
+    const { setSelectedProduct, validUser } = useContext(ProductContext);
     const { addToCart } = useContext(ProductContext);
     const navigate = useNavigate();
     const [toast, setToast] = useState(null);
@@ -21,6 +22,8 @@ export default function ProductCard({ product, alreadyLikedProductId }) {
     const [isProductLiked, setisProductLiked] = useState(false);
     const [likedProductId, setlikedProductId] = useState([]);
     const [isAlreadyInCart, setisAlreadyInCart] = useState(false);
+    const [showCustomModal, setShowCustomModal] = useState(false);
+    const [customModalMessage, setcustomModalMessage] = useState('');
 
     const priceInINR = convertPriceToRupees(product.price);
     
@@ -47,26 +50,43 @@ export default function ProductCard({ product, alreadyLikedProductId }) {
         setTimeout(() => setToast(null), 1000);
     };
 
-    const handleNavigateToBuyProductPage = (product)=> {        
-        setSelectedProduct(product);
-        navigate("/buy-product", { state: {product} });      
+    const handleNavigateToBuyProductPage = (product)=> { 
+         if(validUser.length){
+            setSelectedProduct(product);
+            navigate("/buy-product", { state: {product} }); 
+        }else
+        {
+            handleNavigateToSignInPage('buy products');
+        }          
     }
 
     const handleAddProductToCart = (product) => {
-       
-        const productID = cartProducts.map((item)=>{
-            return item.id
-        })
-        if(!productID.includes(product.id)) {
-            addToCart(product);
-            setToast(`Added to cart`);
-        }else{
-            setisAlreadyInCart(true);
-            setToast(`It's already in your cart`);
-        }
+        if(validUser.length){
+            const productID = cartProducts.map((item)=>{
+             return item.id;
+            })
+            if(!productID.includes(product.id)) {
+                addToCart(product);
+                setToast(`Added to cart`);
+            }else{
+                setisAlreadyInCart(true);
+                setToast(`It's already in your cart`);
+            }
 
-        setTimeout(() => setToast(null), 1000);
+            setTimeout(() => setToast(null), 1000);
+        }else{
+            handleNavigateToSignInPage('add product to the cart')
+        }
     };
+
+    function handleNavigateToSignInPage(message){
+        setcustomModalMessage(`Please sign in before ${message}.`);
+        setShowCustomModal(true);
+    }
+
+    function handleSignInRoute(){        
+        navigate('/signin')
+    }
 
     
   return (
@@ -98,7 +118,12 @@ export default function ProductCard({ product, alreadyLikedProductId }) {
             </div>
             <div className="free-delivery-wrapper color-blue">Free Delivery</div>
         </div>
-         
+
+        {showCustomModal && (
+            <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={handleSignInRoute} iconName={RiErrorWarningLine}/>
+            </div>
+        )}
     </div>
 
   );

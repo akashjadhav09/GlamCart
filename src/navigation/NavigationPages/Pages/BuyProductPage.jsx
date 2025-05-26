@@ -1,10 +1,12 @@
 import { React, useContext, useState, useRef, useEffect  } from "react";
+import { RiErrorWarningLine } from "react-icons/ri";
+
 
 import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
 import ScrollToTop from '../../../widgets/components/ScrollToTop';
 import { convertPriceToRupees } from '../../../helper/Helper';
-import PlaceOrderCustomModal from '../../../widgets/custom-modal/ModalWidget/PlaceOrderCustomModal';
+import CustomModal from '../../../widgets/custom-modal/ModalWidget/CustomModal';
 
 import './Css/BuyProductPageCss.css';
 
@@ -330,7 +332,7 @@ function BuyProductPage () {
                     </div>
                     {showPlaceOrderModal && (
                         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                            <PlaceOrderCustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared."/>
+                            <CustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared." handleOkButtonClick={() => setShowPlaceOrderModal(false)} iconName={RiErrorWarningLine}/>
                         </div>
                     )}
                 </div>
