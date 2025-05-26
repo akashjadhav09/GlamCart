@@ -1,4 +1,6 @@
 import { React, useContext, useState, useRef, useEffect  } from "react";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+
 
 import { ProductContext } from "../../../context/ProductData";
 import FooterSection from "./footer";
@@ -330,7 +332,7 @@ function BuyProductPage () {
                     </div>
                     {showPlaceOrderModal && (
                         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                            <CustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared."/>
+                            <CustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared." handleOkButtonClick={() => setShowPlaceOrderModal(false)} iconName={IoCheckmarkCircleOutline}/>
                         </div>
                     )}
                 </div>

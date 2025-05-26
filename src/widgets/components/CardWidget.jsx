@@ -1,6 +1,7 @@
 import  {React, useEffect, useState, useContext} from "react";
 import {MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { IoWarningOutline } from "react-icons/io5";
 
 import { ProductContext } from "../../context/ProductData";
 import ToastNotification from './ToastNotification';
@@ -84,10 +85,10 @@ export default function ProductCard({ product, alreadyLikedProductId }) {
     function handleNavigateToSignInPage(message){
         setcustomModalMessage(`Please sign in before ${message}.`);
         setShowCustomModal(true);
+    }
 
-        setTimeout(() => {
-            navigate('/signin')
-        }, 2500);
+    function handleSignInRoute(){        
+        navigate('/signin')
     }
 
     
@@ -123,7 +124,7 @@ export default function ProductCard({ product, alreadyLikedProductId }) {
 
         {showCustomModal && (
             <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage}/>
+                <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={handleSignInRoute} iconName={IoWarningOutline}/>
             </div>
         )}
     </div>
