@@ -1,7 +1,10 @@
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { RiErrorWarningLine } from "react-icons/ri";
 
+import CustomModal from '../widgets/custom-modal/ModalWidget/CustomModal';
 import './css/SignUpCss.css'
 
 export default function SignUpForm (){
@@ -12,12 +15,12 @@ export default function SignUpForm (){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [showCustomModal, setShowCustomModal] = useState(false);
+    const [customModalMessage, setcustomModalMessage] = useState('');
+    const [isAccountCreated, setIsAccountCreated] = useState(false);
+    const [isShowOkButton, setIsShowOkButton] = useState(false);
 
     const navigate = useNavigate();
-
-    function handleRouteToSignIn(){
-        navigate('/signin');
-    }
 
     function handleUserInputValues(e, property) {
         const setters = {
@@ -34,12 +37,13 @@ export default function SignUpForm (){
         }
     }
 
-
     function handleStoreDetailsToLocalStorage() {
+        if(!handleVerifyRequiredFields()) return;
+
         const userDetails = {
             firstname: firstName,
             lastname: lastName,
-            email: emailId,
+            email: emailId.toLocaleLowerCase(),
             userid: userName,
             pass: password,
         };
@@ -47,8 +51,24 @@ export default function SignUpForm (){
         const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
         existingUsers.push(userDetails);
         localStorage.setItem("users", JSON.stringify(existingUsers));
+        showAccountCreatedPopup();
         clearForm();
-        handleRouteToSignIn();
+    }
+
+    function handleVerifyRequiredFields(){
+        if(firstName.trim() && lastName.trim() && emailId.trim() && userName.trim() && password.trim()){
+            return true;            
+        }
+        setShowCustomModal(true);
+        setIsShowOkButton(true);
+        setcustomModalMessage('All fields are mandatory, Please complete them.')
+    }   
+
+    function showAccountCreatedPopup(){
+        setIsAccountCreated(prev => !prev);
+        setIsShowOkButton(false);
+        setShowCustomModal(true);
+        setcustomModalMessage('Account created successfully.')
     }
 
     function clearForm() {
@@ -57,6 +77,10 @@ export default function SignUpForm (){
         setEmailId('');
         setUserName('');
         setPassword('');
+    }
+
+    function handleRouteToSignIn(){
+        navigate('/signin');
     }
 
     return(
@@ -169,6 +193,12 @@ export default function SignUpForm (){
                 </button>
                 </div>
             </div>
+
+            {showCustomModal && (
+                <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={isShowOkButton ? () => setShowCustomModal(false) : () => handleRouteToSignIn()} iconName={isAccountCreated ? IoCheckmarkCircleOutline : RiErrorWarningLine} buttonText={isShowOkButton ? 'Ok' : 'Go To Signin'}/>
+                </div>
+            )}
         </div>
 
     )

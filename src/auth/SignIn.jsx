@@ -1,8 +1,10 @@
 import {useContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
+import { RiErrorWarningLine } from "react-icons/ri";
+
 import { ProductContext } from '../context/ProductData';
+import CustomModal from '../widgets/custom-modal/ModalWidget/CustomModal';
 
 export default function SignInForm () {
     const [showPassword, setShowPassword] = useState(false);
@@ -10,7 +12,9 @@ export default function SignInForm () {
     const [userPass, setUserPass] = useState('');
     const [storedUserData, setStoredUserData] = useState([]);
     const { validUser, setValidUser } = useContext(ProductContext);
-    
+    const [showCustomModal, setShowCustomModal] = useState(false);
+    const [customModalMessage, setcustomModalMessage] = useState('');
+
     const navigate = useNavigate();
 
 
@@ -22,13 +26,16 @@ export default function SignInForm () {
     },[validUser])
     
     const handleLogin = () => {
+        if(!handleVerifyRequiredFields()) return;
+
         const matchedUser = storedUserData.find((user) =>
             user.userid === userName && user.pass === userPass
         );
         if(matchedUser){
-            alert("logged in...");
             setValidUser([matchedUser]); 
-            navigate('/home');
+            setTimeout(() => {
+                navigate('/home');  
+            }, 1000);
             navigate('/', { replace: true });
         }else{
             alert("Invalid credentials...");
@@ -40,6 +47,14 @@ export default function SignInForm () {
     function handleRouteToSignUp(){
         navigate('/signup');
     }
+
+    function handleVerifyRequiredFields(){
+        if(userName.trim() && userPass.trim()){
+            return true;            
+        }
+        setShowCustomModal(true);
+        setcustomModalMessage('Please fill in all required fields.')
+    }  
 
     function clearForm(){
         setUserName('');
@@ -113,6 +128,13 @@ export default function SignInForm () {
                     </div>
                 </div>
             </div>
+
+            {showCustomModal && (
+                <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={() => setShowCustomModal(false)} iconName={RiErrorWarningLine}/>
+                </div>
+            )}
+
         </div>
 
     )

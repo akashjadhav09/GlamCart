@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 
-export default function CustomModal({ onClose, message, handleOkButtonClick, iconName:Icon }) {
+export default function CustomModal({ onClose, message, handleOkButtonClick, iconName:Icon, buttonText }) {
 
   return (
     <div className=''>
@@ -23,7 +23,7 @@ export default function CustomModal({ onClose, message, handleOkButtonClick, ico
             onClick={handleOkButtonClick}
             className='px-4 py-2 md:my-1 bg-blue-600 text-white rounded hover:bg-blue-700'
           >
-            OK
+            {buttonText || "Ok"}
           </button>
         </div>
       </div>

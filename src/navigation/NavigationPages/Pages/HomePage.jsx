@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoWarningOutline } from "react-icons/io5";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 import { ProductContext } from "../../../context/ProductData";
 import Carousel from "../../../widgets/components/CarouselWidget";
@@ -52,7 +52,7 @@ export default function HomePage() {
 
             {showCustomModal && (
                 <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={handleSignInRoute} iconName={IoWarningOutline}/>
+                    <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage} handleOkButtonClick={handleSignInRoute} iconName={RiErrorWarningLine}/>
                 </div>
             )}
         </div>
