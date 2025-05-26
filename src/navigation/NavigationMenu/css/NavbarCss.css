@@ -19,14 +19,9 @@
     height: 100%;
   }
 
-  .glam-cart-name-wrapper{
-    /* margin: 0 1.5em;
-    padding-bottom: 10px; */
-  }
-
   .buttons-wrapper {
     align-items: center;
-    gap: 0.3em;
+    gap: 1.3em;
     cursor: pointer;
   }
 

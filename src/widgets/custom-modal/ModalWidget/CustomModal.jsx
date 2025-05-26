@@ -2,7 +2,7 @@ import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
-export default function PlaceOrderCustomModal({ onClose, message }) {
+export default function CustomModal({ onClose, message }) {
 
   return (
     <div className=''>

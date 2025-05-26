@@ -26,8 +26,8 @@ function App() {
       {validUser.length > 0 && <Navbar/>}
 
       <Routes>
-          <Route path="/" element={<SignInForm />} />
-          {/* <Route path="/" element={<HomePage />} /> */}
+          {/* <Route path="/" element={<SignInForm />} /> */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />

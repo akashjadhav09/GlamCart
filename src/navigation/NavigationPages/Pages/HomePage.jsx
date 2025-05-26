@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ProductContext } from "../../../context/ProductData";
@@ -6,15 +6,29 @@ import Carousel from "../../../widgets/components/CarouselWidget";
 import ProductCard from "../../../widgets/components/CardWidget"; 
 import FooterSection from '../Pages/footer';
 import ScrollToTop from '../../../widgets/components/ScrollToTop';
+import CustomModal from "../../../widgets/custom-modal/ModalWidget/CustomModal";
 
 import "./Css/HomePageCss.css";
 
 export default function HomePage() {
-    const { productDetails } = useContext(ProductContext);
+    const { productDetails, validUser } = useContext(ProductContext);
+    const [showCustomModal, setShowCustomModal] = useState(false);
+    const [customModalMessage, setcustomModalMessage] = useState('');
+    
     const navigate = useNavigate();
 
     function handleExploreMoreProducts(){
-        navigate("/shopnow");
+        if(validUser.length){
+            navigate("/shopnow");
+        }else
+        {
+            setcustomModalMessage('Please sign in before explore products.');
+            setShowCustomModal(true);
+
+            setTimeout(() => {
+                navigate('/signin')
+            }, 2500);
+        }
     }
 
     return (
@@ -35,6 +49,12 @@ export default function HomePage() {
                 <FooterSection/>
                 <ScrollToTop />
             </div>
+
+            {showCustomModal && (
+                <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <CustomModal onClose={() => setShowCustomModal(false)} message={customModalMessage}/>
+                </div>
+            )}
         </div>
     );
 }

@@ -16,7 +16,7 @@ export default function SignUpForm (){
     const navigate = useNavigate();
 
     function handleRouteToSignIn(){
-        navigate('/');
+        navigate('/signin');
     }
 
     function handleUserInputValues(e, property) {
