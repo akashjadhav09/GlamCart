@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 
 import './App.css'
 
@@ -16,14 +16,42 @@ import CartPage from './navigation/NavigationPages/Pages/ProductCartPage';
 import FavProductPage from './navigation/NavigationPages/Pages/FavProductPage';
 
 import { ProductContext } from './context/ProductData';
+import PlaceOrderCustomModal from '../src/widgets/custom-modal/ModalWidget/PlaceOrderCustomModal';
 
 function App() {
   const { validUser } = useContext(ProductContext);
+  const [clicksPerSecond, setClicksPerSecond] = useState(0);
+  const clickTimes = useRef([]);
+  const [showPlaceOrderModal, setShowPlaceOrderModal] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
+  
+  useEffect(()=>{
+    document.addEventListener('click', handleClick);
+
+    return()=>{
+      document.removeEventListener('click', handleClick);
+    }
+  })
+
+  function handleClick(){
+    const now = Date.now();
+
+    clickTimes.current.push(now);
+    clickTimes.current = clickTimes.current.filter((time) => now - time <= 1000);
+    setClicksPerSecond(clickTimes.current.length);
+
+    if(clicksPerSecond > 5){
+      setShowPlaceOrderModal(true);
+      setNotificationMessage('Its bot or any automated script')
+    }
+  }
+
   return (
-    <Router>
-      <div id='app-container__main'>
-      
-      {validUser.length > 0 && <Navbar/>}
+    <>
+      <Router>
+        <div id='app-container__main'>
+        
+        {validUser.length > 0 && <Navbar/>}
 
       <Routes>
           {/* <Route path="/" element={<SignInForm />} /> */}
@@ -32,17 +60,25 @@ function App() {
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
 
-          <Route path="/new-arrivals" element={<NewArrivalPage />} />
-          <Route path="/Aboutus" element={<AboutUs />} />
-          <Route path="/shopnow" element={<ShopNowPage />} />
-          <Route path="/product-detail-modal" element={<ProductDetailModal />} />
-          <Route path="/buy-product" element={<BuyProductPage />} />
-          <Route path="/cart-page" element={<CartPage />} />
-          <Route path="/liked-product-page" element={<FavProductPage />} />
-        </Routes>
-      </div>
-    </Router>
+            <Route path="/new-arrivals" element={<NewArrivalPage />} />
+            <Route path="/Aboutus" element={<AboutUs />} />
+            <Route path="/shopnow" element={<ShopNowPage />} />
+            <Route path="/product-detail-modal" element={<ProductDetailModal />} />
+            <Route path="/buy-product" element={<BuyProductPage />} />
+            <Route path="/cart-page" element={<CartPage />} />
+            <Route path="/liked-product-page" element={<FavProductPage />} />
+          </Routes>
+        </div>
+      </Router>
+
+      {showPlaceOrderModal && (
+        <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <PlaceOrderCustomModal onClose={() => setShowPlaceOrderModal(false)} message={notificationMessage}/>
+        </div>
+      )}
+    </>
+   
   )
 }
 
-export default App
+export default App;
