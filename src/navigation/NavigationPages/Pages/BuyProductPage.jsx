@@ -8,7 +8,6 @@ import ScrollToTop from '../../../widgets/components/ScrollToTop';
 import { convertPriceToRupees } from '../../../helper/Helper';
 import CustomModal from '../../../widgets/custom-modal/ModalWidget/CustomModal';
 
-import './Css/BuyProductPageCss.css';
 
 function BuyProductPage () {
     const { selectedProduct } = useContext(ProductContext);
@@ -42,7 +41,6 @@ function BuyProductPage () {
             if (showPlaceOrderModal) {
               rootElement.style.overflow = 'hidden';
               rootElement.style.pointerEvents = 'none';
-            //   rootElement.style.cursor = 'not-allowed';
               if(placeOrderModal) placeOrderModal.style.pointerEvents = 'auto';
             } else {
               rootElement.style.overflow = 'auto';
@@ -98,8 +96,7 @@ function BuyProductPage () {
                         <img                            
                             src={selectedImgPath || selectedProduct.thumbnail}
                             alt={selectedProduct.title}
-                            className="h-full w-full object-cover"
-                            onClick={()=>getClikedImagePath(selectedImgPath)}
+                            className="h-full w-full object-cover"                           
                         />
                     </div>
 
@@ -109,7 +106,7 @@ function BuyProductPage () {
                                 <img
                                     src={image}
                                     className="product-image-small"
-                                    
+                                    onClick={()=>getClikedImagePath(image)}
                                 />
                                 </div>
                             ))}

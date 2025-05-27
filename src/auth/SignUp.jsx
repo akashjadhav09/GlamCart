@@ -5,7 +5,6 @@ import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { RiErrorWarningLine } from "react-icons/ri";
 
 import CustomModal from '../widgets/custom-modal/ModalWidget/CustomModal';
-import './css/SignUpCss.css'
 
 export default function SignUpForm (){
     const [showPassword, setShowPassword] = useState(false);
@@ -86,7 +85,6 @@ export default function SignUpForm (){
     function handleTermsAndConditionClick(){
         const link = document.createElement('a');
         link.href = '../../public/assets/docs/Terms.pdf'; 
-        console.log(" link.href ",  link.href)
         link.download = 'TermsAndConditions.pdf';
         document.body.appendChild(link);
         link.click();

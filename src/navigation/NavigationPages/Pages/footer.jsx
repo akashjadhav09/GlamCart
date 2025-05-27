@@ -1,7 +1,3 @@
-import React from "react";
-
-import './Css/FooterSectionCss.css';
-
 export default function FooterSection(){
     return(
         <div className="footer-section bg-[#23acb1] text-white">          

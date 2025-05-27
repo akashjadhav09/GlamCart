@@ -56,11 +56,7 @@
     transition: transform 0.2s ease;
     display: contents;
   }
-  
-  .product-delete-wrapper:hover {
-    /* transform: scale(1.1); */
-  }
-  
+    
   .delete-icon {
     font-size: 20px;
   }

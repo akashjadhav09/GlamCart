@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaRegStopCircle } from "react-icons/fa";
 import { BsSkipStartCircle } from "react-icons/bs";
 
-import "../componentCss/CarouselWidgetCss.css";
-
 const carouselData = [
   { 
     image: "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png", 

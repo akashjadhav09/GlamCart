@@ -22,45 +22,12 @@ export default function AboutUs(){
                         </div>
                     </div>
 
-
-                    {/* <div className="card-section">
-                        <div className="small-card">
-                            <div className="icon"><GrFireball className="icon-inner" /></div>
-                            <h4 className="title">10.5k</h4>
-                            <p>Trust</p>
-                        </div>
-
-                        <div className="small-card">
-                            <div className="icon"><GrSafariOption  className="icon-inner" /></div>
-                            <h4 className="title">10.5k</h4>
-                            <p>Trust</p>
-                        </div>
-
-                        <div className="small-card">
-                            <div className="icon"><GrUbuntu  className="icon-inner" /></div>
-                            <h4 className="title">10.5k</h4>
-                            <p>Trust</p>
-                        </div>
-
-                        <div className="small-card">
-                            <div className="icon"><GrCloudlinux  className="icon-inner" /></div>
-                            <h4 className="title">10.5k</h4>
-                            <p>Trust</p>
-                        </div>
-
-                        <div className="small-card">
-                            <div className="icon"><GrFireball className="icon-inner" /></div>
-                            <h4 className="title">10.5k</h4>
-                            <p>Trust</p>
-                        </div>
-                    </div> */}
-                    
                     <div className="meet-our-people-section">
                     <div className="heading text-center my-4"><span>Meet The Team</span></div>
                         <div className="profile-wrapper flex flex-wrap gap-1 m-[2px]">
                             <ProfileCard
                                 image="../../../../public/assets/images/prof-avtar-1.png"
-                                name="Shubham Shinde"
+                                name="Michael Chen"
                                 designation="Lead UI/UX Designer"
                                 socialLinks={{
                                 linkedin: "https://linkedin.com/in/johndoe",
@@ -71,7 +38,7 @@ export default function AboutUs(){
 
                             <ProfileCard
                                 image="../../../../public/assets/images/prof-avtar-2.png"
-                                name="Yash Bagal"
+                                name="Sarah Miller"
                                 designation="Operations Manager"
                                 socialLinks={{
                                 linkedin: "https://linkedin.com/in/johndoe",
@@ -82,7 +49,7 @@ export default function AboutUs(){
 
                             <ProfileCard
                                 image="../../../../public/assets/images/prof-avtar-1.png"
-                                name="Akash Jadhav"
+                                name="Alex Johnson"
                                 designation=" Front-End Developer"
                                 socialLinks={{
                                 linkedin: "https://linkedin.com/in/johndoe",
