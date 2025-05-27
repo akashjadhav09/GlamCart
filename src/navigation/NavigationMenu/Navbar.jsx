@@ -1,25 +1,24 @@
 import {React, useContext, useEffect, useState}from "react";
-import { useLocation } from 'react-router-dom';
-
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdOutlineSupervisedUserCircle, MdShoppingCart,  MdFavorite  } from "react-icons/md";
 import { GoSidebarCollapse } from "react-icons/go";
 
-
 import Sidebar from '../../widgets/components/SideBar';
 import { ProductContext } from "../../context/ProductData";
+import SignOutPopup from "../../widgets/custom-modal/ModalWidget/SignOutPopup";
+
 import './css/NavbarCss.css'
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const { likedProducts, cartProducts } = useContext(ProductContext);
+  const { likedProducts, cartProducts, isSignOutPopupVisible, setIsSignOutPopupVisible } = useContext(ProductContext);
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   const [isHomePageVisible, SetIsHomePageVisible] = useState(false);
   const [isDiscoverDealsVisible, SetIsDiscoverDealsVisible] = useState(false);
   const [isNewArrivalVisible, SetIsNewArrivalVisible] = useState(false);
   const [isAboutUsVisible, SetIsAboutUsVisible] = useState(false);
+  
+  const navigate = useNavigate();
   const location = useLocation();
-
 
   useEffect(() => {
     SetIsHomePageVisible(location.pathname === '/home');
@@ -37,7 +36,11 @@ export default function Navbar() {
   }
 
   const handleShowSidebar = ()=>{
-    setIsShowSidebar(prev => !prev);
+    setIsShowSidebar((prev) => !prev);
+  }
+
+  const handleOpenPopup = () =>{
+    setIsSignOutPopupVisible((prev) => !prev);
   }
 
   return (
@@ -73,12 +76,6 @@ export default function Navbar() {
             </div>
           </div>
 
-       {/* <div className="search-bar-wrapper">
-        <div className="search-bar-wrapper__inner">
-            <input className="search-here" type="text" placeholder="search here"/>
-        </div>
-       </div> */}
-
       <div className="cart-and-profile-icon-wrapper">
         <div className="cart-icon-wrapper favourite-icon-wrapper" onClick={() => openFavProductList()}>
           <MdFavorite className="search-icon" />
@@ -100,7 +97,7 @@ export default function Navbar() {
         </div>
 
         <div className="profile-icon-wrapper">
-        <MdOutlineSupervisedUserCircle />
+          <MdOutlineSupervisedUserCircle onClick={(e)=>handleOpenPopup(e)}/>
         </div>
       </div>
 
@@ -110,6 +107,8 @@ export default function Navbar() {
     <div className={`md:hidden ${isShowSidebar ?'block' : 'hidden'}`}>
       <Sidebar isOpen={isShowSidebar} onClose={() => setIsShowSidebar(false)}/>
     </div>
+
+      {isSignOutPopupVisible && <SignOutPopup/> }
     </>
   );
 }
