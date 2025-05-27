@@ -41,7 +41,7 @@ function App() {
     clickTimes.current = clickTimes.current.filter((time) => now - time <= 1000);
     setClicksPerSecond(clickTimes.current.length);
 
-    if(clicksPerSecond > 5){
+    if(clicksPerSecond > 8){
       setShowCustomModal(true);
       setNotificationMessage('Its bot or any automated script')
     }
@@ -50,17 +50,14 @@ function App() {
   return (
     <>
       <Router>
-        <div id='app-container__main'>
-        
-        {validUser.length > 0 && <Navbar/>}
-
-      <Routes>
-          {/* <Route path="/" element={<SignInForm />} /> */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/signin" element={<SignInForm />} />
-          <Route path="/signup" element={<SignUpForm />} />
-
+        <div id='app-container__main'>        
+          {/* {validUser.length > 0 && <Navbar/>} */}
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/signin" element={<SignInForm />} />
+            <Route path="/signup" element={<SignUpForm />} />
             <Route path="/new-arrivals" element={<NewArrivalPage />} />
             <Route path="/Aboutus" element={<AboutUs />} />
             <Route path="/shopnow" element={<ShopNowPage />} />

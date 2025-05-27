@@ -10,6 +10,7 @@ export const ProductProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState([]);
   const [validUser, setValidUser] = useState([]);
+  const [isSignOutPopupVisible, setIsSignOutPopupVisible] = useState(false);
 
   const addToCart = (product) => {
     const alreadyInCart = cartProducts.some((p) => p.id === product.id);
@@ -46,7 +47,9 @@ export const ProductProvider = ({ children }) => {
         addToFavProduct,
         removeFromFavProduct,
         validUser, 
-        setValidUser      
+        setValidUser,
+        isSignOutPopupVisible,
+        setIsSignOutPopupVisible   
       }}>
 
       {children}      
