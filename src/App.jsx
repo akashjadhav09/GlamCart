@@ -51,8 +51,8 @@ function App() {
     <>
       <Router>
         <div id='app-container__main'>        
-          {/* {validUser.length > 0 && <Navbar/>} */}
-          <Navbar/>
+          {validUser.length > 0 && <Navbar/>}
+          {/* <Navbar/> */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/home" element={<HomePage />} />
