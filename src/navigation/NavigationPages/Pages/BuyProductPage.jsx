@@ -223,6 +223,75 @@ function BuyProductPage () {
                             </div>
                         </div>
 
+ {/* ---------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+                        <div className="card-details-wrapper__outer space-y-6">
+                            <div className="card-label text-xl font-semibold text-gray-800 dark:text-white">User Details</div>
+
+                            <div className="card-details__inner grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter your name</h5>
+                                    <input
+                                    type="text"
+                                    value={cardNameValue}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (/^[a-zA-Z]*$/.test(value)) {
+                                            setCardNameValue(value);
+                                        }
+                                    }}                                  
+                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mobile Number</h5>
+                                    <input
+                                    type="text"                                    
+                                    value={cardNumberValue}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (/^\d*$/.test(value) && value.length <= 10) {
+                                            setCardNumberValue(value);
+                                        }
+                                    }}
+                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</h5>
+                                    <input
+                                    type="text"
+                                    value={cardMonthYearValue}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (/^[a-zA-Z]*$/.test(value)) {
+                                            setCardNameValue(value);
+                                        }
+                                    }}   
+                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Address</h5>
+                                    <input
+                                    type="text"
+                                    placeholder="123"
+                                    value={cardCvvNumber}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (/^[a-zA-Z]*$/.test(value)) {
+                                            setCardNameValue(value);
+                                        }
+                                    }}   
+                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    />    
+                                </div>
+                            </div>
+                        </div>
+ {/* ----------------------------------------------------------------------------------------------------------------------------------------------------------         */}
+
                         <div className="card-details-wrapper__outer space-y-6">
                             <div className="card-label text-xl font-semibold text-gray-800 dark:text-white">Card Details</div>
 
