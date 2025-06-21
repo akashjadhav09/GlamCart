@@ -1,7 +1,7 @@
 export default function FooterSection(){
     return(
         <div className="footer-section bg-[#23acb1] text-white">          
-                <div className="footer-details flex flex-col items-center space-y-4 text-center my-2 md:flex-row gap-4">
+                <div className="footer-details flex flex-col items-center space-y-4 text-center mt-2 md:flex-row gap-4">
                     <div className="about-us-section border-b border-white pb-4 md:border-b-0 md:pb-0 w-[50%]"> <span className="title">ABOUT</span>
                         <div className="contact-us">Contact us</div>
                         <div className="aboute-us">About us</div>

@@ -52,7 +52,7 @@ export default function NewArrivalPage() {
                         <img 
                             src="https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/thumbnail.png"
                             alt="new-arrival-product" 
-                            className="product-image"
+                            className="product-image object-contain"
                         />
                         <div className="new-arrival-detail-wrapper">
                             <div className="text">Chanel Coco Eau De</div>

@@ -41,7 +41,7 @@ function App() {
     clickTimes.current = clickTimes.current.filter((time) => now - time <= 1000);
     setClicksPerSecond(clickTimes.current.length);
 
-    if(clicksPerSecond > 8){
+    if(clicksPerSecond > 3){
       setShowCustomModal(true);
       setNotificationMessage('Its bot or any automated script')
     }
