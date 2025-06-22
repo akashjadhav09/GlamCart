@@ -12,7 +12,6 @@ export default function ProfilePopup({onClose, validUser}){
     let currentUserEmail = "";
 
     if(validUser){
-        console.log(validUser)
         currentUserName = `${validUser[0].firstname.trim()} ${validUser[0].lastname.trim()}`;
         currentUserid = validUser[0].userid;
         currentUserEmail = validUser[0].email;
