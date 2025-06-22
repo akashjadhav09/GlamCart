@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isDiscoverDealsVisible, SetIsDiscoverDealsVisible] = useState(false);
   const [isNewArrivalVisible, SetIsNewArrivalVisible] = useState(false);
   const [isAboutUsVisible, SetIsAboutUsVisible] = useState(false);
+  const { validUser, setValidUser } = useContext(ProductContext);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,7 +106,7 @@ export default function Navbar() {
     </nav>
 
     <div className={`md:hidden ${isShowSidebar ?'block' : 'hidden'}`}>
-      <Sidebar isOpen={isShowSidebar} onClose={() => setIsShowSidebar(false)}/>
+      <Sidebar isOpen={isShowSidebar} onClose={() => setIsShowSidebar(false)} validUser={validUser}/>
     </div>
 
       {isSignOutPopupVisible && <SignOutPopup/> }

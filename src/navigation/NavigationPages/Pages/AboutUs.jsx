@@ -24,7 +24,7 @@ export default function AboutUs(){
 
                     <div className="meet-our-people-section">
                     <div className="heading text-center my-4"><span>Meet The Team</span></div>
-                        <div className="profile-wrapper flex flex-wrap gap-1 m-[2px]">
+                        <div className="profile-wrapper flex flex-wrap gap-1 m-[2px] justify-evenly">
                             <ProfileCard
                                 image="../../../../public/assets/images/prof-avtar-1.png"
                                 name="Michael Chen"

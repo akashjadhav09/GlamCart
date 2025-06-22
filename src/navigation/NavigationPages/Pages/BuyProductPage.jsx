@@ -1,5 +1,6 @@
 import { React, useContext, useState, useRef, useEffect  } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { IoWarningOutline } from "react-icons/io5";
 
 
 import { ProductContext } from "../../../context/ProductData";
@@ -20,6 +21,11 @@ function BuyProductPage () {
     const [grandTotal, setGrandTotal] = useState('');
     const [isOrderNowVisible, setIsOrderNowVisible] = useState(false);
     const [showPlaceOrderModal, setShowPlaceOrderModal] = useState(false);
+    const [showFieldValueWarningVModal, setshowFieldValueWarningModal] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [userMobileNumber, setuserMobileNumber] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userAddress, setUserAddress] = useState('');
    
     const productReviewDivRef = useRef(null);
     const cardTypes = [
@@ -81,9 +87,48 @@ function BuyProductPage () {
         }
       };     
       
-      function handleOpenplaceOrderModal () {
+    function handleOpenplaceOrderModal () {
+       const allEmpty = [
+            cardNameValue,
+            cardNumberValue,
+            cardMonthYearValue,
+            cardCvvNumber,
+            userName,
+            userMobileNumber,
+            userAddress
+        ].some(value => !value);
+
+        if (allEmpty) {
+            setshowFieldValueWarningModal(true);
+            return;
+        }
+
         setShowPlaceOrderModal(true);
-      }
+        cleanupStateValues();
+    }
+
+    const formatCardNumber = (value) => {
+        const digits = value.replace(/\D/g, '').slice(0, 16);
+        return digits.replace(/(.{4})/g, '$1 ').trim();
+    };
+
+    const formatExpiry = (value) => {
+        const digits = value.replace(/\D/g, '').slice(0, 4);
+        if (digits.length <= 2) return digits;
+        return `${digits.slice(0,2)}/${digits.slice(2)}`;
+    };
+
+    const cleanupStateValues = ()=>{
+        setCardNameValue('');
+        setCardNumberValue('');
+        setCardCvvNumber('');
+        setCardMonthYearValue('');
+        setUserName('');
+        setuserMobileNumber('');
+        setUserEmail('');
+        setUserAddress('');
+        setGrandTotal('');
+    }
     
     return(
         <div className="buy-product-wrapper__outer">
@@ -232,14 +277,15 @@ function BuyProductPage () {
                                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter your name</h5>
                                     <input
                                     type="text"
-                                    value={cardNameValue}
+                                    value={userName}
                                     onChange={(e) => {
                                         const value = e.target.value;
-                                        if (/^[a-zA-Z]*$/.test(value)) {
-                                            setCardNameValue(value);
+                                        if (/^[a-zA-Z\s]*$/.test(value)) {
+                                            setUserName(value);
                                         }
                                     }}                                  
                                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    required
                                     />
                                 </div>
 
@@ -247,14 +293,15 @@ function BuyProductPage () {
                                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mobile Number</h5>
                                     <input
                                     type="text"                                    
-                                    value={cardNumberValue}
+                                    value={userMobileNumber}
                                     onChange={(e) => {
                                         const value = e.target.value;
                                         if (/^\d*$/.test(value) && value.length <= 10) {
-                                            setCardNumberValue(value);
+                                            setuserMobileNumber(value);
                                         }
                                     }}
                                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    required
                                     />
                                 </div>
 
@@ -262,14 +309,13 @@ function BuyProductPage () {
                                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</h5>
                                     <input
                                     type="text"
-                                    value={cardMonthYearValue}
+                                    value={userEmail}
                                     onChange={(e) => {
                                         const value = e.target.value;
-                                        if (/^[a-zA-Z]*$/.test(value)) {
-                                            setCardNameValue(value);
-                                        }
+                                        setUserEmail(value);
                                     }}   
                                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    required
                                     />
                                 </div>
 
@@ -277,15 +323,13 @@ function BuyProductPage () {
                                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Address</h5>
                                     <input
                                     type="text"
-                                    placeholder="123"
-                                    value={cardCvvNumber}
+                                    value={userAddress}
                                     onChange={(e) => {
                                         const value = e.target.value;
-                                        if (/^[a-zA-Z]*$/.test(value)) {
-                                            setCardNameValue(value);
-                                        }
+                                        setUserAddress(value);
                                     }}   
                                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                    required
                                     />    
                                 </div>
                             </div>
@@ -304,6 +348,7 @@ function BuyProductPage () {
                                         ${card.base}
                                         ${selectedCardType === card.name ? 'ring-2 ring-offset-2 ring-offset-white ring-sky-500 dark:ring-white' : ''}
                                     `}
+                                    required
                                     >
                                     {card.name}
                                     </div>
@@ -319,26 +364,26 @@ function BuyProductPage () {
                                 value={cardNameValue}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    if (/^[a-zA-Z]*$/.test(value)) {
+                                    if (/^[a-zA-Z\s]*$/.test(value)) {
                                         setCardNameValue(value);
                                     }
                                   }}                                  
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+                                required
                                 />
                             </div>
 
                             <div>
                                 <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Card number</h5>
                                 <input
-                                type="text"
-                                placeholder="1234 5678 9012 3456"
-                                value={cardNumberValue}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    if (/^\d*$/.test(value) && value.length <= 16) {
-                                        setCardNumberValue(value);
-                                    }
-                                }}
+                                    type="text"
+                                    inputMode="numeric"
+                                    placeholder="1234 5678 9012 3456"
+                                    value={cardNumberValue}
+                                    onChange={(e) => {
+                                        const formatted = formatCardNumber(e.target.value);
+                                        setCardNumberValue(formatted);
+                                    }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
@@ -349,12 +394,12 @@ function BuyProductPage () {
                                 type="text"
                                 placeholder="MM/YY"
                                 value={cardMonthYearValue}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    if (/^[\d/]*$/.test(value) && value.length <= 5) {                                       
-                                        setCardMonthYearValue(value);                                     
-                                    }
-                                  }}
+                               onChange={(e) => {
+                                    const raw = e.target.value;
+                                    if (!/^[\d/]*$/.test(raw)) return;
+                                    const formatted = formatExpiry(raw);
+                                    setCardMonthYearValue(formatted);
+                                }}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                                 />
                             </div>
@@ -382,7 +427,7 @@ function BuyProductPage () {
                                 type="text"
                                 placeholder="Select count - Total will be appear here"
                                 readOnly
-                                value={grandTotal ? grandTotal : ''}
+                                value={grandTotal ? convertPriceToRupees(grandTotal) : ''}
                                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                             />
                             </div>
@@ -399,6 +444,12 @@ function BuyProductPage () {
                     {showPlaceOrderModal && (
                         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                             <CustomModal onClose={() => setShowPlaceOrderModal(false)} message="Thanks for shopping with us! Your order is being prepared." handleOkButtonClick={() => setShowPlaceOrderModal(false)} iconName={RiErrorWarningLine}/>
+                        </div>
+                    )}
+
+                    {showFieldValueWarningVModal && (
+                        <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <CustomModal onClose={() => setshowFieldValueWarningModal(false)} message="Please fill all fields." handleOkButtonClick={() => setshowFieldValueWarningModal(false)} iconName={IoWarningOutline}/>
                         </div>
                     )}
                 </div>

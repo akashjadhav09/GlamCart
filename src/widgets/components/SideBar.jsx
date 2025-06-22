@@ -7,7 +7,7 @@ import { AiFillMobile } from "react-icons/ai";
 
 import '../componentCss/SideBarWidgetCss.css';
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar({ isOpen, onClose, validUser }) {
     const [isHomePageVisible, SetIsHomePageVisible] = useState(false);
     const [isDiscoverDealsVisible, SetIsDiscoverDealsVisible] = useState(false);
     const [isNewArrivalVisible, SetIsNewArrivalVisible] = useState(false);
@@ -15,6 +15,16 @@ export default function Sidebar({ isOpen, onClose }) {
 
     const sidebarRef = useRef(null);
     const location = useLocation();
+
+    let currentUserName= "";
+    let currentUserid = "";
+    let currentUserEmail = "";
+
+    if(validUser){
+        currentUserName = `${validUser[0].firstname.trim()} ${validUser[0].lastname.trim()}`;
+        currentUserid = validUser[0].userid;
+        currentUserEmail = validUser[0].email;
+    }
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -36,14 +46,26 @@ export default function Sidebar({ isOpen, onClose }) {
         };
     }, [onClose,location.pathname]);
 
+    function createNameMonogram(fullName) {
+        const parts = fullName.trim().split(' ');
+        const first = parts[0]?.charAt(0).toUpperCase() || '';
+        const last = parts.length > 1
+            ? parts[parts.length - 1].charAt(0).toUpperCase()
+            : '';
+        return first + last;
+    }
+
     if (!isOpen) return null;
     return(
         <>
             <div ref={sidebarRef} className="sidebar-main-wrapper__outer h-full bg-slate-200 fixed z-[11]">
                 <div className="sidebar-main-wrapper__inner">
                     
-                    <div className="profile-circle flex justify-center py-3 border-b border-b-slate-300">
-                        <div className="profile-circle h-10 w-10 bg-slate-500 rounded-full my-1"></div>
+                    <div className="profile-circle py-3 border-b border-b-slate-300 flex items-center justify-center flex-col">
+                        <div className="profile-circle h-10 w-10 bg-violet-400 text-white rounded-full my-1 flex items-center justify-center">
+                            {createNameMonogram(currentUserName)}
+                        </div>
+                        <div className="user-name text-xl font-semibold text-center mb-1">{currentUserName}</div>
                     </div>
 
                     <div className="nav-link-wrapper__outer">
