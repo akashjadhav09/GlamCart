@@ -4,9 +4,19 @@ import { IoMdClose } from 'react-icons/io';
 
 import { ProductContext } from '../../../context/ProductData';
 
-export default function ProfilePopup({onClose}){
+export default function ProfilePopup({onClose, validUser}){
     const { isSignOutPopupVisible, setIsSignOutPopupVisible } = useContext(ProductContext);
     const navigate = useNavigate();
+    let currentUserName= "";
+    let currentUserid = "";
+    let currentUserEmail = "";
+
+    if(validUser){
+        console.log(validUser)
+        currentUserName = `${validUser[0].firstname.trim()} ${validUser[0].lastname.trim()}`;
+        currentUserid = validUser[0].userid;
+        currentUserEmail = validUser[0].email;
+    }
 
     function handleHomeButtonClick(){
         navigate('/home');
@@ -19,6 +29,16 @@ export default function ProfilePopup({onClose}){
         onClose();
         setIsSignOutPopupVisible(false);
     }
+
+    function createNameMonogram(fullName) {
+        const parts = fullName.trim().split(' ');
+        const first = parts[0]?.charAt(0).toUpperCase() || '';
+        const last = parts.length > 1
+            ? parts[parts.length - 1].charAt(0).toUpperCase()
+            : '';
+        return first + last;
+    }
+
 
     return(
         <div
@@ -35,12 +55,11 @@ export default function ProfilePopup({onClose}){
                     <IoMdClose className='text-2xl text-gray-700' />
                 </div>
                 <div className="user-avatar w-20 h-20 rounded-full bg-gray-200 mx-auto mb-4 flex items-center justify-center text-xl font-bold text-gray-600 mt-3">
-                JD
+                {createNameMonogram(currentUserName)}
                 </div>
-                <div className="user-name text-xl font-semibold text-center mb-1">John Doe</div>
-                <div className="user-contact text-sm text-center text-gray-500 mb-1">johndoe@example.com</div>
-                <div className="user-address text-sm text-center text-gray-400 mb-4">123 Main St, City</div>
-
+                <div className="user-name text-xl font-semibold text-center mb-1">{currentUserName}</div>
+                <div className="user-contact text-sm text-center text-gray-500 mb-1">{currentUserid}</div>
+                <div className="user-contact text-sm text-center text-gray-500 mb-1">{currentUserEmail}</div>
                 <div className="button-wrapper flex flex-col gap-2">
                 <button
                     className="close-btn bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"

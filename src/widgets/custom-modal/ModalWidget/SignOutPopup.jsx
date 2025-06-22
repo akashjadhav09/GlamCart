@@ -2,29 +2,29 @@ import {React, useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import ProfilePopup from "./ProfilePopup";
-
 import { ProductContext } from "../../../context/ProductData";
 
 export default function SignOutPopup(){
     const [isOpenProfilePopup, setIsOpenProfilePopup] = useState(false);
     const { isSignOutPopupVisible, setIsSignOutPopupVisible } = useContext(ProductContext);
+    const { validUser, setValidUser } = useContext(ProductContext);
     const popupRef = useRef(null);
     
     const navigate = useNavigate();
 
     useEffect(()=>{
-        const handleClick = (event) =>{
+        const handleClosePop = (event) =>{
             if (popupRef.current && !popupRef.current.contains(event.target)) {        
                 // setIsSignOutPopupVisible((prev)=> !prev);
             }
         }
 
-        document.addEventListener('mousedown',handleClick);
-        document.addEventListener('scroll',handleClick);
+        document.addEventListener('mousedown',handleClosePop);
+        document.addEventListener('scroll',handleClosePop);
 
         return(()=>{
-            document.removeEventListener('mousedown',handleClick);
-            document.removeEventListener('scroll',handleClick);
+            document.removeEventListener('mousedown',handleClosePop);
+            document.removeEventListener('scroll',handleClosePop);
         })
     },[isSignOutPopupVisible])
 
@@ -32,7 +32,7 @@ export default function SignOutPopup(){
         if(property === "profile"){
             setIsOpenProfilePopup((prev)=> !prev);
         }else{
-            navigate('/signin');
+            navigate('/signin', { replace: true });
             setIsSignOutPopupVisible((prev)=> !prev);
         }
     }
@@ -56,7 +56,7 @@ export default function SignOutPopup(){
                 </button>
             </div>
 
-            {isOpenProfilePopup && <ProfilePopup onClose={handleCloseProfilePopup}/>}
+            {isOpenProfilePopup && <ProfilePopup onClose={handleCloseProfilePopup} validUser={validUser}/>}
         </>
     )
 }
