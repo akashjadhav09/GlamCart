@@ -14,15 +14,17 @@ export default function SignInForm () {
     const { validUser, setValidUser } = useContext(ProductContext);
     const [showCustomModal, setShowCustomModal] = useState(false);
     const [customModalMessage, setcustomModalMessage] = useState('');
+    // const { setIsSignInpageVisible } = useContext(ProductContext);
 
     const navigate = useNavigate();
 
 
     useEffect(()=>{
         setStoredUserData(JSON.parse(localStorage.getItem("users")) || []);
-        if (validUser.length > 0) {
-            navigate('/home', { replace: true }); 
-        }   
+        // if (validUser.length > 0) {
+        //     navigate('/home', { replace: true }); 
+        // }   
+        // setIsSignInpageVisible(true);
     },[validUser])
     
     const handleLogin = () => {

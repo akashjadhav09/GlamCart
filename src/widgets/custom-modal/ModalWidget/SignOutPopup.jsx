@@ -32,7 +32,7 @@ export default function SignOutPopup(){
         if(property === "profile"){
             setIsOpenProfilePopup((prev)=> !prev);
         }else{
-            navigate('/signin', { replace: true });
+            handleRouteToSignIn();
             setIsSignOutPopupVisible((prev)=> !prev);
         }
     }
@@ -40,6 +40,21 @@ export default function SignOutPopup(){
     const handleCloseProfilePopup = ()=>{
         setIsSignOutPopupVisible((prev) => !prev);
         setIsOpenProfilePopup((prev) => !prev)
+    }
+
+    function handleRouteToSignIn(){
+        navigate('/signin');
+        removeUserById();
+    }
+
+    function removeUserById() {
+        const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+        if (!existingUsers) return; 
+        
+        const users = existingUsers;
+        const updated = users.filter(user => user.userid !== validUser[0].userid);
+        localStorage.setItem('users', JSON.stringify(updated));
+        setValidUser([])
     }
 
     return(
@@ -52,7 +67,7 @@ export default function SignOutPopup(){
 
                 <button 
                     className="signout-button w-full text-center px-4 py-2 hover:bg-gray-100 text-text-gray-700 transition-colors text-sm font-medium text-gray-700"
-                    onClick={()=>handleClick(' SignOut')}> Sign Out                   
+                    onClick={()=>handleClick('SignOut')}> Sign Out                   
                 </button>
             </div>
 
