@@ -15,7 +15,7 @@ export default function SignOutPopup(){
     useEffect(()=>{
         const handleClosePop = (event) =>{
             if (popupRef.current && !popupRef.current.contains(event.target)) {        
-                // setIsSignOutPopupVisible((prev)=> !prev);
+                setIsSignOutPopupVisible((prev)=> !prev);
             }
         }
 
